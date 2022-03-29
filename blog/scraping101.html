@@ -1,0 +1,159 @@
+
+
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+a:link {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-white" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white"></a>
+    <a href=/people/rpatel59/index.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About</a>
+    <a href=/people/rpatel59/research-code.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Research+Code</a>
+    <a href=/people/rpatel59/blog.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Blog</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href=/people/rpatel59/index.html class="w3-bar-item w3-button w3-padding-large">About</a>
+    <a href=/people/rpatel59/research-code.html class="w3-bar-item w3-button w3-padding-large">Research+Code</a>
+    <a href=/people/rpatel59/blog.html class="w3-bar-item w3-button w3-padding-large">Blog</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-black w3-center" style="padding:128px 16px">
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Web Scraping 101</h1>
+	<p></br></p>
+
+	<p>If you want to pull large amounts of data from a website that doesn’t have an official and accessible API, this tutorial will provide you with all the information that you need.</p>
+
+	<p>Anything that you can see on a webpage in written form, you should be able to pull off with minimal effort. There are of course, a number of things that developers can do to thwart such efforts, but we’ll cover that later. If you’re lucky, the webpage that you want will have a link to a json or xml file with the data you need. These are well-formatted, downloadable and easy to read and parse through with (mostly) low error rate, in terms of extracting unwanted information and noise. But even if not, the HTML source page will have everything you need and with slightly more effort (read: manual perusal of lots of lines of HTML code) you’ll be able to extract anything that you require. </p>
+	<p></p>
+	<p></br></p>
+
+	<p>Tools: a working knowledge of HTML, good [Python/Java/your programming language of choice] skills and at least a few hours to spare on filtering noise in different iterations/reading through the HTML.</p>
+	<p></p>
+	<p></br></p>
+
+	<p>I would highly recommend Python as your goto language, not just because of the python packages (BeautifulSoup, lxml, some other less efficient ones) but also because of its ease of use. If you’ve never used Python before but know how to program, you will have absolutely no problem at all. If you have no programming knowledge, this might be slightly harder but you can <a href="https://www.codecademy.com/learn/learn-python">learn</a>. Let’s begin web scraping.</p>
+	<p></br></p>
+
+	<p></p>
+	<p>We’re going to begin with BeautifulSoup because for the most part, you’re not going to easily find xml and json files for what you need. BeautifulSoup is a package in Python (I would recommend 2.7, by the way) which can pull out paragraphs, tables, titles and lists from a webpage, given the url. It doesn’t actually fetch the web page for you, which is why we use Urllib in combination with Beautiful Soup. Here’s what you have to do.</p>
+	<p></br></p>
+	<p>import urllib</p>
+	<p>import bs4</p>
+	<p>from bs4 import BeautifulSoup</p>
+	<p>url_name = “https:// . . .”</p>
+	<p>page = urllib.urlopen(url_name).read()</p>
+	<p>soup_obj = BeautifulSoup(page, “html5lib”)</p>
+	<p></br></p>
+	<p></p>
+	<p>For every package that you use always look at the documentation. You’ll discover so many additional things you can do or could have done, if you only end up reading it after you’ve finished your implementation. Here’s the <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a> documentation. And here’s the <a href="https://docs.python.org/2/library/urllib.html">Urllib</a> documentation.</p>
+	<p></p>
+	<p>The soup object just created contains all the HTML of the url fed into it.</p>
+	<p>Now, if you have a working knowledge of HTML, you know that different types of content are places within different tags. If we’re interested only in a certain type of content, and if we’re fortunate and it’s all contained within a specific HTML tag, all we want to do is to grab precisely that information. This is where we use the find_all method.</p>
+	<p></p>
+	<p></br></p>
+	<p>items = soup_obj.find_all(“div”, class_=“xyz”)</p>
+	<p></br></p>
+	<p></p>
+	<p>The above statement gives us an utterable collection of objects that contain the information we want. We can run through the collection and extract the text we need at each point in the collection.</p>
+	<p></p>
+	<p></br></p>
+	<p>for item in items:</p>
+	<p>	print item.a.get_text()</p>
+	<p></br></p>
+	<p></p>
+	<p>I think the most useful advice from here on, is to actually inspect the source code of the web page you’re interested. Identify the elements you want to extract and identify the tags the information is contained in — and also if they vary. Once you know the tags, all you really have to do is a variant of the above iterable collection to get the bs4 objects you need.</p>
+	<p></p>
+	<p></br></p>
+	<p></br></p>
+
+
+	<p>Points to Note:</br></p>
+	<p></br></p>
+
+	<p>To make life easier and prevent overloading, you should parallelize your program and ensure that your implementation isn't too hard on the server. Try to make efficient use of processors and threads i.e., make use of a multiprocessing package like <a href="https://docs.python.org/2/library/multiprocessing.html">this</a> to send request in parallel. </p>
+	<p></br></p>
+	<p>import multiprocessing</p>
+
+	<p>n_cpus = multiprocessing.cpu_count()</p>
+	<p>page_list = ['www...', .. ,]</p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+	<p>for cpu in n_cpus:</p>
+	<p>	current = multiprocessing.Process(name=str(cpu), target = perform_extraction)</p>
+	<p>current.start()</p>
+	<p></p>
+	<p></br></p>
+	<p></br></p>
+
+	<p>BeautifulSoup is easy to use and is ideal for small projects. If you need to create a significantly larger database and need a framework that handle data at a larger scale, consider the following: </br></p>
+	<p>Scrapy i.e., a powerful scraping framework in python if you want to build a web crawler that does more than just extracting a few specific elements. </p>
+	<p>Selenium i.e., a framework useful when you need data and elements in sites with JavaScript.</p>
+	<p>MySQL or a similar database backend to keep track of and store data.</p>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-github w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>

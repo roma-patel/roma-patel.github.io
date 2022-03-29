@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<title>Roma Patel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+a:link {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-white" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white"></a>
+    <a href=/people/rpatel59/index.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About</a>
+    <a href=/people/rpatel59/research-code.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Research+Code</a>
+    <a href=/people/rpatel59/blog.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Blog</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href=/people/rpatel59/index.html class="w3-bar-item w3-button w3-padding-large">About</a>
+    <a href=/people/rpatel59/research-code.html class="w3-bar-item w3-button w3-padding-large">Research+Code</a>
+    <a href=/people/rpatel59/blog.html class="w3-bar-item w3-button w3-padding-large">Blog</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-black w3-center" style="padding:128px 16px">
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>NLP Papers</h1>
+	<p>The general theme that these papers follow is <em>tying language meaning to language use</em> specifically in reinforcement learning settings for task solving and navigation. The complexity of environments varies (e.g., complex visual information and natural language utterances as opposed to discrete grid-world environments and fake language sampled from a grammar. That said, there's a lot to learn from both settings and we're still a far way off from solving a lot of the hard problems in both scenarios.</p> 
+	<p>Here’s the list. Happy reading!</br></p>
+	<p></br><p>
+
+	<p></br><p>
+	<p>
+Speaker-Follower Models for
+Vision-and-Language Navigation
+	</br>
+Daniel Fried, Ronghang Hu, Volkan Cirik, Anna Rohrbach, Jacob Andreas, Louis-Philippe Morency, Taylor Berg-Kirkpatrick, Kate Saenko, Dan Klein, Trevor Darrell
+	</br></p>
+	<p><small><i> 
+This paper was a very cool attempt at fitting instruction following into the RSA setup. Essentially, build a base listener trained to follow instructions, a base speaker trained to generate instructions and then a pragmatic listener agent that conditions on both. An agent that tries to follow natural language instructions by keeping in mind the speaker's beliefs over routes in the environment can outperform an L0 listener agent that only attempts to explore the environment without this additional reasoning. Big gains in performance (possibly also because of data augmentation from speaker) and generally a very cool practical use of Goodman et. al's RSA framework for navigation in environments with complex, panoramic state information. Nit: while the speaker is trained to generate natural language, the routes that it is trained on are exhaustively sampled shortes path routes in different environments. It is likely the case that the gains in performance come from this additional exploration during training rather than any communicative agent belief reasoning.. but still a noteworthy approach.
+	</i></small></p>
+	<p></br><p>
+
+
+
+	<p></br><p>
+	<p>
+Learning to Win by Reading Manuals in a Monte-Carlo Framework
+
+	</br>
+S.R.K. Branavan, David Silver, Regina Barzilay
+
+	</br></p>
+	<p><small><i> 
+			This (in my mind) revolutionary paper from MIT in 2011 attempts to do things (akin to DQN, language-conditioned RL, skill learning) waay before it's time. Game environments (in their case they use Civilisation, but can extend to Minecraft and the likes) often come with manuals. It is natural for a human to first read a manual to understand the game dynamics, and then successfully learn to win the game. This paper attempts to do that in a somewhat primitive way --- instructions in manuals are parsed to learn useful relations and skills (e.g., axes->tools->wood->fire and wood->planks->bridge) that you can then input to a Q-function that therefore learns to attribute useful language information to states, in order to transfer to other scenarios where these can be used. They use MC updates for Q learning and show that this actually helps in better behavior. Lots of things left to explore in this area: can we learn dynamically from text, from interaction, by transferring and chaining skills sequentially, by incorporating priors over states and also using pretrained language information.
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+	<p></br><p>
+	<p>
+Points, Paths, and Playscapes: Large-scale Spatial Language Understanding Tasks Set in the Real World
+	</br>
+Jason Baldridge, Tania Bedrax-Weiss, Daphne Luong, Srini Narayanan, Bo Pang, Fernando Pereira, Radu Soricut, Michael Tseng, Yuan Zhang
+	</br></p>
+	<p><small><i> 
+This is mostly a survey paper but an interesting read (and was brilliantly presented at a NAACL workshop). Spatial language understanding has so far been explored in 2D realms and entirely from language; the next big advances require real-world interactive datasets, where a bot can experience everything that a human would, interact with them, and learn to survive in the environment This requires understanding of the happenings occurring around it and complex sensorimotor information perceiving capabilties. For the first time, it has access to nearly all modes of informaiton that a human would, as opposed to only text and images. 
+
+This survey/proposal proposes to create richer data that requires scene understanding, will be in first person perspective, will be at a much larger scale (e.g., Google Maps data around the world), will have more natural language.
+	</i></small></p>
+	<p></br><p>
+
+
+
+	<p></br><p>
+	<p>
+Semantic Parsing with Semi-Supervised Sequential Autoencoders
+
+	</br>
+Tomáš Kočiský, Gábor Melis, Edward Grefenstette, Chris Dyer, Wang Ling, Phil Blunsom, Karl Moritz Hermann
+	</br></p>
+	<p><small><i> 
+Interesting approach for meaning representations (more detail in the other, correct section). Which applies semi-supervision to a navigation task by sampling new environments and maps (in synthetic domains without vision), and training an autoencoder to reconstruct routes, using language as a latent variable.
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+	<p></br><p>
+	<p>
+Listen, Attend, and Walk: Neural Mapping
+of Navigational Instructions to Action Sequences
+	</br>
+Hongyuan Mei, Mohit Bansal and Matthew R. Walter
+	</br></p>
+	<p><small><i> 
+The first seq2seq! For RL! That works! And on SAIL, too! More concretely --- one of the first attempts to go directly from language → policy on Ray Mooney's benchmark instruction-following task and they convincingly show improved SOTA performance on a pretty hard task (yes, SAIL is a grid world and a pretty small one, but has a complex array of objects and state features and pretty variable natural language instructions) which is interesting + promising to see.
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+	<p></br><p>
+	<p>
+Language as an abstraction for HRL.
+
+	</br>
+Yiding Jiang, Shixiang Gu, Kevin Murphy, Chelsea Finn
+	</br></p>
+	<p><small><i> 
+Very cool attempt to use language to instruct a two-layer hierarchical policy for sorting / rearrangement tasks. Instead of other forms of abstraction, attempt to use *language* as an abstraction for HRL (so atomic units can be composed together like subtasks). Train low level policies that take in language and learn to solve the task and then train high level policies that instruct the low level policies (through language), and therefore allows reuse of language components (i.e., abstractions and sub-units) across tasks. Evaluate on object sorting and multi-object rearrangement and also introduce a new RL env for these tasks. They mostly show that making high level policies produce “language” e.g., high-level actions in the space of possible language strings does better than a vanilla DQN-esque thing with a flat policy. 
+
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+
+	<p></br><p>
+	<p>
+Automatically Composing Representation Transformations as a Means for Generalization
+	</br>
+Michael B. Chang, Abhishek Gupta, Sergey Levine, Thomas L. Griffiths
+	</br></p>
+	<p><small><i> 
+Compositionality is key to be able to reuse previous experiences and generalise to complex tasks composed of subtasks. This paper wants to relate tasks through a compositional problem graph (where tasks of different complexity i.e., number of subtasks can be related). They introduce a compositional recursive learner that reasons about what computation to execute by making analogies to previously seen problems. So recast the problem of generalisation as a problem of learning algorithmic procedures over representation transformations → a solution to a problem is a transformation between its input and output representations. They experiment on multilingual arithmetic problem solving and recognition of spatially transformed digits in MNIST. And it works kind of well!
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+	<p></br><p>
+	<p>
+Weakly Supervised Learning of Semantic Parsers for Mapping Instructions to Actions.
+
+	</br>
+Yoav Artzi and Luke Zettlemoyer.
+	</br></p>
+	<p><small><i> 
+As needed for most planning / RL / robotics settings, we want to ground language to symbolic meaning (CCG) representations that you can use to plan. But can we do this without having to annotate paired language → CCG data? This paper builds a feedback mechanism to reward the learned logical forms with trajectories in an environment --- therefore never (but, caveat) seeing ground truth logical forms during training. Their feedback mechanism is somewhat inefficient --- a model needs to be built for a produced logical form, to execute this in the environment and see if it reaches the goal state (this is a somewhat simplified explanation, read for more detail). One of the first weakly supervised approaches for instruction following and has been foundational for all future attempts to do this.
+	</i></small></p>
+	<p></br><p>
+
+
+	<p></br><p>
+	<p>
+Modular Multitask RL with Policy Sketches.
+	</br>
+Jacob Andreas, Dan Klein and Sergey Levine.
+	</br></p>
+	<p><small><i> 
+	This paper attempts to tie in information about the structure of a policy by annotating tasks with "sketches". Each sketch is a symbolic name of a high-level sub-plan analogous to an option. Each modular sub-policy (associated with the task symbol in the sketch) is jointly learned by maximising reward over the task-specifi policies (that can share these sub-polciies). They use an A2C method to optimise this entire thing and compare to baselines (option-critic and un-tied sub-polciies) and show good generalisation that allows reusing the learned sub-polcies for different tasks. This doesn't actually do anything with natural language, but was a pretty cool attempt to show that giving a small amount of structured information --- here in the form of symbolic information about option chains, can go a long way.
+		</i></small></p>
+	<p></br><p>
+
+
+
+
+
+	<p>Learning and using language via recursive pragmatic reasoning about other agents. </br> Smith, Nathaniel J.; Noah D. Goodman; and Michael C. Frank. 2013. </br></p>
+	<p><small><i> This paper (to the best of my knowledge) serves as the first proper introduction of the RSA model i.e., a setting in which interacting agents or language learners approximate a shared lexicon that they jointly reason over. They interact in a goal-oriented fashion i.e., iteratively pass knowledge to one another. Later work builds on this is several different ways; while fixed RSA deals with a fixed literal semantic lexicon that agents share, learned RSA allows more flexibility. Here, what agents are sharing are model parameters, which they then use to optimise what they are interested in i.e., a speaker wants the best utterance given the target and context and the listener wants the best object given the utterance, but now these are parameterised by the same learned variable. This model therefore portrays several phenomena and key features of language i.e., pragmatic inference, communicative conversation, word meaning and referring expressions. Important elements: Covers the fundamental RSA equations relating speakers, listeners and the lexicon. Shows how learning, reasoning and inference take place and ties this in with phenomenon like scalar implicature and Horn implicature. Explains the basic reference game layout. </i></small></p>
+	<p></br><p>
+	
+ 
+
+	<p></br><p>
+	<p>
+Reinforced Cross-Modal Matching and Self-Supervised Imitation Learning for Vision-Language Navigation
+	</br>
+Xin Wang, Qiuyuan Huang, Asli Celikyilmaz, Jianfeng Gao, Dinghan Shen, Yuan-Fang Wang, William Yang Wang, Lei Zhang
+
+	</br></p>
+	<p><small><i> 
+
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+
+	<p></br><p>
+	<p>
+Self-Monitoring Navigation Agent via Auxiliary Progress Estimation
+
+	</br>
+
+Chih-Yao Ma, Jiasen Lu, Zuxuan Wu, Ghassan AlRegib, Zsolt Kira, Richard Socher, Caiming Xiong	
+	</br></p>
+	<p><small><i> 
+
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+
+
+	<p></br><p>
+	<p>
+Deep Transfer in Reinforcement Learning by Language Grounding
+
+
+	</br>
+Karthik Narasimhan, Regina Barzilay and Tommi Jaakkola
+
+	
+	</br></p>
+	<p><small><i> 
+
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+
+
+	<p></br><p>
+	<p>
+	Learning to Navigate Unseen Environments: Back Translation with Environmental Dropout
+	</br>
+	Hao Tan, Licheng Yu, Mohit Bansal
+	</br></p>
+	<p><small><i> 
+
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+
+
+	<p></br><p>
+	<p>
+	Hierarchical Decision Making by Generating and Following Natural Language Instructions
+	</br>
+	Hengyuan Hu, Denis Yarats, Qucheng Gong, Yuandong Tian, Mike Lewis
+	</br></p>
+	<p><small><i> 
+
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+
+
+
+
+	<p></br><p>
+	<p>
+	From Language to Goals: Inverse Reinforcement Learning for Vision-Based Instruction Following
+	</br>
+	Justin Fu, Anoop Korattikara, Sergey Levine, Sergio Guadarrama
+	</br></p>
+	<p><small><i> 
+
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+
+
+
+
+	<p></br><p>
+	<p>
+	
+Tactical Rewind: Self-Correction via Backtracking in Vision-and-Language Navigation
+	</br>
+	Liyiming Ke, Xiujun Li, Yonatan Bisk, Ari Holtzman, Zhe Gan, Jingjing Liu, Jianfeng Gao, Yejin Choi, Siddhartha Srinivasa
+	</br></p>
+	<p><small><i> 
+
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+
+
+
+
+	<p></br><p>
+	<p>
+	Mapping Instructions to Actions in 3D Environments with Visual Goal Prediction
+	</br>
+	Dipendra Misra, Andrew Bennett, Valts Blukis, Eyvind Niklasson, Max Shatkhin, Yoav Artzi
+	</br></p>
+	<p><small><i> 
+
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+
+
+
+	
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-github w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>

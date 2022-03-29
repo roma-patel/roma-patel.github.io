@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<title>Roma Patel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+a:link {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-white" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white"></a>
+    <a href=/people/rpatel59/index.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About</a>
+    <a href=/people/rpatel59/research-code.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Research+Code</a>
+    <a href=/people/rpatel59/blog.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Blog</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href=/people/rpatel59/index.html class="w3-bar-item w3-button w3-padding-large">About</a>
+    <a href=/people/rpatel59/research-code.html class="w3-bar-item w3-button w3-padding-large">Research+Code</a>
+    <a href=/people/rpatel59/blog.html class="w3-bar-item w3-button w3-padding-large">Blog</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-black w3-center" style="padding:128px 16px">
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>NLP Papers</h1>
+	<p>The general theme that these papers follow is <em>pragmatic reasoning and language understanding through interaction</em> but in arguably very different ways and in different settings.</p>
+	<p>I'm ordering/segregating by my own personal checklist which is often {year published, NLP group, applicability to work now}, therefore the most recent or promising papers are probably the last. But then again, the first (original RSA introduction) is fundamental to all else and is placed first. A few papers are slightly unrelated but tie in ideas to represent the world knowledge or common ground or base lexicons that agents rely on.</p>
+	<p>Here’s the list. Happy reading!</br></p>
+	<p></br><p>
+	<p></br><p>
+
+
+	<p>Learning and using language via recursive pragmatic reasoning about other agents. </br> Smith, Nathaniel J.; Noah D. Goodman; and Michael C. Frank. 2013. </br></p>
+	<p><small><i> This paper (to the best of my knowledge) serves as the first proper introduction of the RSA model i.e., a setting in which interacting agents or language learners approximate a shared lexicon that they jointly reason over. They interact in a goal-oriented fashion i.e., iteratively pass knowledge to one another. Later work builds on this is several different ways; while fixed RSA deals with a fixed literal semantic lexicon that agents share, learned RSA allows more flexibility. Here, what agents are sharing are model parameters, which they then use to optimise what they are interested in i.e., a speaker wants the best utterance given the target and context and the listener wants the best object given the utterance, but now these are parameterised by the same learned variable. This model therefore portrays several phenomena and key features of language i.e., pragmatic inference, communicative conversation, word meaning and referring expressions. Important elements: Covers the fundamental RSA equations relating speakers, listeners and the lexicon. Shows how learning, reasoning and inference take place and ties this in with phenomenon like scalar implicature and Horn implicature. Explains the basic reference game layout. </i></small></p>
+	<p></br><p>
+	
+	<p>That's what she (could have) said: how alternative utterances affect language use. </br> Bergen, Leon; Noah D. Goodman; and Roger Levy. 2012. </br></p>
+	<p><small><i> This paper experiments with the RSA setting to test phenomenon like specificity implicatures and Horn implicatures in the same reference or signaling games. It goes over an interesting experimental analysis of human judgements in the reference games tested against the model. </i></small></p>
+
+	
+	</br>
+
+	<p>Predicting pragmatic reasoning in language games. </br> Frank, Michael C. and Noah D. Goodman. 2012. </br></p>
+	<p><small><i> This is a less fleshed-out version of the first Smith, Goodman, Frank paper that outlines the general RSA theme i.e., the recursive back-and-forth reasoning process that allows communicative learning, but not the speaker, listener equations and probability distributions. Refer to the first for more detail.</i></small></p>
+
+	</br>
+
+	<p>Representing General Relational Knowledge in ConceptNet 5. Robert Speer and Catherine Havasi. 2012.</p>
+	<p><small><i> This may not completely belong here but I personally love the concept of a general purpose world knowledge or common sense representation that can (hopefully) be tied into other settings. This paper introduce a semantic network framework to model world knowledge relying on existing taxonomies and databases. It fits well with other tasks like semantic parsing, QA etc., because of the way the graph structure is laid out. Nodes represent concepts (utterances or units of varying granularity) while weighted edges represent assertions or functional relations between nodes. While </i></small></p>
+	</br>
+	
+	<p>Iterated Learning and the Evolution of Language. Simon Kirby, Tom Griffiths and Kenny Smith. 2014. </br> </p>
+	<p><small><i> This paper goes over how the behaviour of agents is shaped by the iterated learning process i.e., behaviour that arises in one individual through induction. This happens on the basis of observations and behavioural stimulus in another indvidual who also acquired the behaviour in a similar way. The experiments are both computational (agent-based simulations and mathematical modelling) and non-computational (laboratory and toy experiments with humans and animals). Overall, this paper shows that there is a wide range of evidence that the key design features of language emerge from iterated learning -- and this takes place in so many different forms e.g., exemplar models, grounded robotic models, vision-related, connectionist models or using symbolic grammars. Interesting point: In mathematical modeling, pioneering work shows that the success of language depends on how many people understand a language; therefore this framework can be used to answer many intrinsic questions about learning. Example, how constrained does language learning need to be to ensure that interacting agents will speak the same language? How similar does the knowledge of two agents have to be to allow co-ordination?</i></small></p>
+	</br>
+
+	<p>. Can we derive general world knowledge from
+texts?. Lenhart Schubert. 2002. </p>
+	<p><small><i> This goes over several simple ways of obtaining common sense or general knowledge from text. While these (and other) methods have been criticised in numerous works that try to compare how different "text-based knowledge" is from "real-world knowledge", this is still useful for creation of (yes, biased) knowledge bases to use for downstream understanding tasks.</i></small></p>
+	<p></br><p>
+
+
+	<p>Reasoning about Pragmatics with Neural Listeners and Speakers. </br> Jacob Andreas and Dan Klein. 2016. </br></p>
+	<p><small><i> This is one of the first papers to tie in RSA with neural models i.e., instead of log-linear agent representations where speakers and listerners jointly reason over a lexicon (and utterances are fixed in most cases), here the reasoning (pragmatic) and base (literal) speakers and listeners are represented as simple neural modules and all utterances and referents are embedded in the same space, with feature functions used in the same way as before. This is nicer than the fixed lexicon models and learned RSA models and is more efficient than methods that enumerate all utterances i.e., here we sample from the neural base model to limit the search space and regularise towards natural language utterances. Later work also uses LSTMs as speaker/listener models for similar reference game settings. Overall, the system can generate descriptions about scenes in settings that require pragmatic reasoning by working in a goal-oriented setting with two interacting agents. This essentially shows that pragmatic behaviour i.e., the reasoning modules are better than the literal modules for contextual/referent tasks and that incorporating neural modules in the existing approaches to pragmatics and reasoning helps overcome some of the constraints and inefficiencies of earlier models.</i></small></p>
+	</br>
+
+	<p>Colors in Context: A Pragmatic Neural Model for Grounded Language Understanding. </br> Will Monroe, Robert X.D. Hawkins, Noah D. Goodman, Christopher Potts. 2017. </br></p>
+	<p><small><i>This is similar to the Andreas et. al., paper above but with speaker and listener modules that are slightly more sophisticated. The colour reference game setting is a new and interesting approach to formulate contextual and pragmatic reasoning. Again, this shows that the reasoning modules i.e., pragmatic agents that rely on interaction instead of just the literal, semantic statistical properties of utterances perform better than the base, literal agents. This goes over the agent modules in more detail i.e., approaching pragmatics from the speaker side (generating utterances for referents in context) and from the listener side (choosing the correct referent in context). So the pragmatic speaker is an LSTM that generates an utterance by taking in input the target and context and pragmatically reasoning about its input and the base models; while the pragmatic listener generates a distribution over the objects to choose the best one, given its input utterance. The corpus released is also larger by several magnitudes and really useful in this setting.</i></small></p>
+	</br>
+
+	<p>Multi-Agent Cooperation and the Emergence of (Natural) Language. Angeliki Lazaridou, Alexander Peysakhovich, Marco Baroni. 2017. </br></p>
+	<p><small><i> This paper mostly introduces the reference game setting i.e., it highlights the importance of interaction and communicative goals that allow agents to learn in a manner that is different from learning from raw text. It ties in correspondences between language and image i.e., using word meanings assocaited with target images to reflect semantic properties of images. It also shows how the symbolic language that emerges as a result of agent interaction resembles natural language.</i></small></p>
+	<p></br><p>
+
+	<p>Natural Language Does Not Emerge ‘Naturally’ in Multi-Agent Dialog. Satwik Kottur, José M.F. Moura, Stefan Lee and Dhruv Batra. 2017. </br></p>
+	<p><small><i> A sort of retaliatory experimental analysis that shows that while the agent interaction-invention languges achieve good task rewards, these are far from interpretable or compositional i.e., these invented languages are not "natural language" or of use in settings that require natural language. This paper goes over how dialog trees can be used to identify learning points.</i></small></p>
+	<p></br><p>
+
+	<p>Unified Pragmatic Models for Generating and Following Instructions. Daniel Fried, Jacob Andreas and Dan Klein. 2018.</p>
+	<p><small><i>This paper builds on the speaker and listener models that reason iteratively and counterfactually about instruction sequences. It focuses on instruction following and instruction generation tasks and similar to previous papers, uses the base (literal) models to derive final (pragmatic) models through a pragmatic inference procedure. This uses slightly more sophisticated seq2seq models for base models and goes over the inference procedure in more detail. Instead of sampling from the base model utterances, they use beam search to get suitable candidates over all models in the base ensemble. When speaker utterances are tested with humans, we see that the pragmatic models provide significant gains in accuracy for following instructions over the literal models. Important elements: Probably slightly less important than the overarching goal, but I really like the datasets used here. SCONE has three aspects (Scene, Alchemy, Tangram) that are ideal for reasoning settings like this. The SAIL navigation dataset fits in with the "following instruction" theme and this paper shows how the pragmatic reference game setting models help imrpove instruction interpretation and generation tasks.</i></small></p>
+	<p>	</br></p>
+
+	<p>Learning End-to-End Goal-Oriented Dialog. Antoine Bordes and Jason Weston. 2016. </br> </p>
+	<p><small><i> This highlights the shortcomings of previous dialog systems and their evaluation i.e., previous slot-filling methods are not domain adaptable while the new end-to-end neural dialog systems are, but are not quite goal-oriented. Goal-oriented dialog requires skills that go beyong language modeling or random generation of social-media language e.g., asking clear (pragmatic) questions, querying knowledge bases, interpreting results from queries, completing transactions and so on. This paper aims to break down the broad goal-oriented objective into smalelr subtasks and test each one in order to understand the performace and proper evaluation of systems. They introduce data to word in the restaurant reservation domain and design a set of 5 tasks that are grounded with an underlying knowledge base of restaurants and properties. Takks cover {issuing API calls, updating AP calls, displaying options to users, providing information when asked and conducting full dialogs}. It also goes over an evaluation of several old-school systems and learning methods i.e., rule-based systems, tf-idf and nearest-neighbour metrics for IR, using embedding representations and finally memory networks which show the best performance.</i></small></p>
+	</br>
+
+	
+	<p>
+	Information Minimization In Emergent Languages
+	</br> 
+	Eugene Kharitonov, Rahma Chaabouni, Diane Bouchacourt and Marco Baroni
+	</br></p>
+	<p><small><i> 
+	Communicative agents (especially in consideration of theories like ToM and maintaining belief states) rely on mutual shared information to efficiently communicate with each other. this papers investigates the information-theoretic complexity of emergent languages (since agents are deterministic, connect entropy and mutual information over inputs and outputs) and finds that agents are subject to an information minimisation pressure. they show that a stronger discrete-channel-driven pressure can allow increased robustness and therefore allow generalisation to new scenarios. 
+	
+	</i></small></p>
+	<p></br><p>
+
+
+
+		<p>
+	Emergent Communication in Agents Learning About Object Affordances
+	</br> 
+	Diane Bouchacourt, Marco Baroni
+	</br></p>
+	<p><small><i> 
+	Communicative agents (especially in consideration of theories like ToM and maintaining belief states) rely on mutual shared information to efficiently communicate with each other. this papers investigates the information-theoretic complexity of emergent languages (since agents are deterministic, connect entropy and mutual information over inputs and outputs) and finds that agents are subject to an information minimisation pressure. they show that a stronger discrete-channel-driven pressure can allow increased robustness and therefore allow generalisation to new scenarios. 
+	
+	</i></small></p>
+	<p></br><p>
+
+
+
+		<p>
+		Translating Neuralese
+	</br> 
+	Jacob Andreas, Anca Dragan and Dan Klein	</br></p>
+	<p><small><i> 
+When agents are parametereised and represented by neural networks, communication happens through discrete channels and hidden state representations that are interpretable (albiet, questionably) to each other --- but not necessarily to humans. Can these internal representations be translated to human-understandable representations? Can this translation module be learned for any agent? Unlike a standard NMT problem with parallel data, this paper attempts to learn a sort of translation model based on the fact that a human-produced representation and an agent-produced representation are a translation pair if they induce the same meaning (for e.g., within a discrete communication channel or when realised in the real world). They perform experiments on interactive communication games like image or color reference games and multi-agent driving games. There's also some simple math that shows that there are theoretical guarantees that the semantics, pragmatics and information content are preserved through this sort of translation module.
+	</i></small></p>
+	<p></br><p>
+
+
+		<p>
+		Analogs of Linguistic Structure in Deep Representation
+	</br> 
+	Jacob Andreas and Dan Klein	</br></p>
+	<p><small><i> 
+
+
+Is there interpretable logical and compositional structure in the langauage that emerges when neural net agents attempt to communicated through message vectors? This papers attempts to look at denotations of the messages apssed (as realised in the world i.e., their underlying grounded meaning) to allow identification of pairs of message vectors that can align with full utterances. Then look at ways of finding transformations within this vector space that are analogous to the rules and operations that humans execute for negation, disjunction and so on. All experiments are performed over the object GenLex corpus with agents reasoning over logical expressions and utterances for the image based referring expression task. Interesting results (and the methodology in general is useful and can be extended) that show that the internal hidden states are capable of performing these functions in a way similar to analogous function computations.
+	</i></small></p>
+	<p></br><p>
+
+
+		<p>Learning Language Games through Interaction. Sida I Wang, Percy Liang, and Christopher D Manning. 2016. </br></p>
+	<p><small><i> </i></small></p>
+
+	<p>Dialog-based Language Learning. Jason Weston. 2016. </br> </p>
+	<p><small><i> </i></small></p>
+
+	<p>Adversarial Learning for Neural Dialogue Generation. Jiwei Li, Will Monroe, Tianlin Shi, Sébastien Jean, Alan Ritter, Dan Jurafsky. 2017. </br> </p>
+	<p><small><i> </i></small></p>
+
+	<p>Knowledge and implicature: Modeling language understanding as social cognition. Noah Goodman and Andreas Stuhlmuller. 2013. </br></p>
+	<p><small><i> </i></small></p>
+
+	<p>Toward a New Taxonomy for Pragmatic Inference: Q-Based and R-Based Implicature.</br> Laurence R. Horn. 19??. </br></p>
+	<p><small><i> </i></small></p>
+
+	<p>Embedded implicatures as pragmatic inferences under compositional lexical uncertainty. </br> Potts, Christopher; Daniel Lassiter; Roger Levy; Michael C. Frank. 2015. </br></p>
+	<p><small><i> </i></small></p>
+	</br>
+
+
+
+
+			<p></br><p>
+	<p>
+Emergent Translation in Multi-Agent Communication
+	
+	</br> 
+J. Lee, K. Cho, J. Weston and D. Kiela
+	
+	</br></p>
+	<p><small><i> 
+		
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+			<p></br><p>
+	<p>
+	Word-order biases in deep-agent emergent communication
+	</br> 
+	Rahma Chaabouni, Eugene Kharitonov, Alessandro Lazaric, Emmanuel Dupoux, and Marco Baroni
+	</br></p>
+	<p><small><i> 
+		
+	</i></small></p>
+	<p></br><p>
+
+
+
+			<p></br><p>
+	<p>
+	How agents see things:
+On visual representations in an emergent language game
+	</br> 
+	Diane Bouchacourt, Marco Baroni
+	</br></p>
+	<p><small><i> 
+		
+	</i></small></p>
+	<p></br><p>
+
+
+
+			<p></br><p>
+	<p>
+	Learning and evaluating general linguistic intelligence
+	</br> 
+	Dani Yogatama, Cyprien de Masson d'Autume, Jerome Connor, Tomas Kocisky, Mike Chrzanowski, Lingpeng Kong, Angeliki Lazaridou, Wang Ling, Lei Yu, Chris Dyer, Phil Blunsom
+	</br></p>
+	<p><small><i> 
+		
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+
+
+			<p></br><p>
+	<p>
+	Emergence of linguistic communication from referential games with symbolic and pixel input
+	</br> 
+	Angeliki Lazaridou, Karl Moritz Hermann, Karl Tuyls, Stephen Clark
+	</br></p>
+	<p><small><i> 
+		
+	</i></small></p>
+	<p></br><p>
+
+
+
+
+
+
+
+			<p></br><p>
+	<p>
+	Multi-agent cooperation and the emergence of (natural) language
+	</br> 
+	Angeliki Lazaridou, Alexander Peysakhovich, Marco Baroni
+	</br></p>
+	<p><small><i> 
+		
+	</i></small></p>
+	<p></br><p>
+
+
+
+				<p></br><p>
+	<p>
+	NEGOTIATING TEAM FORMATION USING
+DEEP REINFORCEMENT LEARNING Negotiating
+	</br> 
+	
+	</br></p>
+	<p><small><i> 
+		
+	</i></small></p>
+	<p></br><p>
+
+
+
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+
+
+
+	
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-github w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+
+
+<!DOCTYPE html>
+<html>
+<title>Roma Patel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+a:link {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-white" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white"></a>
+    <a href=/people/rpatel59/index.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About</a>
+    <a href=/people/rpatel59/research-code.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Research+Code</a>
+    <a href=/people/rpatel59/blog.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Blog</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href=/people/rpatel59/index.html class="w3-bar-item w3-button w3-padding-large">About</a>
+    <a href=/people/rpatel59/research-code.html class="w3-bar-item w3-button w3-padding-large">Research+Code</a>
+    <a href=/people/rpatel59/blog.html class="w3-bar-item w3-button w3-padding-large">Blog</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-black w3-center" style="padding:128px 16px">
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+	</br>
+      <h1>Labelling Schemes for Sequence Tagging Tasks</h1>
+      	</br>
+	</br>
+	<p>The reason that this post exists is because it would have exceedingly useful to me when experimenting with sequence labeling. It seems inconsequential and probably something that's looked over in lieu of more important details about the data, implementation and model architecture, but it's interesting how these small things make a difference. There are so many ways to label your data and so many ways in which it affects the output precision and recall. The inferences below are a result of a series of extensive experiments on a structured prediction/sequence tagging task -- both my own and a few others, that I managed to put together.</p>
+	</br>
+	<p>Let's first briefly define the task at hand. What we're working with is unstructured text, that we want to <i>structure</i>. Structuring could mean converting to graphs, trees, tables, relations or sequences; and here, I'm focusing on sequences. So for each sentence (represented by its constituent words), we want to know which sequences of words mean something to us, and we want to clearly demarcate the boundaries. The easiest way to do this is to just appoint to each word a tag e.g. in NER or POS tagging.</p>
+	</br>
+	<p>Consider a simple example. Let's say we have a document; a series of sentences and for each sentence we want to mark terms relevant to us. And since we're computational linguists, terms relevant to us are NLP terms. We want to mark everything that relates to NLP as "inside", with an <b>"I"</b> tag and everything else as irrelevant or "outside" with an <b>"O"</b> tag. </p>
+	<p> </br> Example:</p>
+	<p> &nbsp;O &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp; &nbsp;I &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I</p>
+	<p>The coolest thing I've ever learnt is Semantic Machine Translation.</p>
+	<p> &nbsp;O &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp; &nbsp;I &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I</p>
+	<p> &nbsp;O &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp; &nbsp;B-I &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I</p>
+	<p> &nbsp;O &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp; &nbsp;I &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; E-I</p>
+	<p> &nbsp;O &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp; O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp;O &nbsp; &nbsp; &nbsp; &nbsp;B-I &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; I  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; E-I</p>
+	<p>There are obviously a number of different ways, given the length of the sequences (what if we have a one word sequence? Should we have a separate <b>S</b> tag in place of the <bf>B-I</bf> and <b>E-I</b>?) and the number of categories we want to mark (we're interested in more than just NLP words?).</p>
+	</br>
+	</br>
+	<p>We want our models to be able to predict sequences in the best way, and we therefore want to label our input data to the model in the best way. For simple sequence tagging, let's look at the most obvious ways to tag word sequences.</p>
+	</br>
+	<p>1. IO. </p> <p>We mark words inside a sequence with the "I" tag and all other words are marked with an "O" tag. We're not concerned about indicating where the beginning and end of the sequence is. This is less complex, but obviously inefficient when we have 2  tags of the same category that we want to explicitly identify, positioned near another in the same sentence. If we're not concerned about discerning between elements of a category, this seems to work best.</p>
+	<p>2. BIO. </p> <p>Here we want to explicitly identify the beginning. This seems to be the most popular scheme, and is especially useful when other encoded features correlate well.</p>
+	<p>3. IOE. </p> <p>Here we want to explicitly identify only the end.</p>
+	<p>4. BIOES. </p> <p>Here we want to mark both the beginning and the end. The "S" is required when there's only a single word we want to mark, and therefore don't need the "B-I" and "E-I".<p> </p>I believe these were introduced in Andrew Borthwick's <a href=https://pdfs.semanticscholar.org/aa10/cd9ff7516cff310e603d88d010c4b2f262a8.pdf>Thesis</a>, titled A Maximum Entropy Approach to NER, but it may have been used earlier. </p>
+	<p></p> <p></p>
+	</br>
+	</br>
+	<p>Results:</p>
+	</br>
+	<p>Firstly, for whatever the task at hand is, it would be useful to look at the <i>type</i> of sequences we want to extract. Are they of variable length? Are they always long word sequences? Or do they consist of one word? Also are there certain syntactic markers or begin/end words? If certain features correlate well with beginning or end symbols, we see dramatic variation of results.</p>
+	</br>
+	<p>In most cases, for multiple category tagging, IO encoding is useful and has the best complexity. The <a href=http://www.aclweb.org/anthology/W/W09/W09-1119.pdf>Ratinov and Roth survey</a> concluded that BIOES is superior to BIO or IO for a second order logistic model. </p>
+	</br>
+	<p>In experiments for biomedical information extraction by sequence tagging, we see the following:</p>
+	<p>For longer sequences and sequence whose lengths vary inconsistently, IO seems to work the best. This provides both the highest precision and recall, compared to BIO, IOE and BIOES.</p>
+	<p>For a category that has significant one-word sequences, BIOES seems to work the best. This has the highest recall, but precision is still better using just IO. Using, the "S" tag therefore seems to be useful when we actually have sequences of only one word.</p>
+	
+	</br>
+	</br>
+	<p>Things to note:</p>
+	<p>Complexity: First-best decoding in an HMM or first order CRF is quadratic in the number of tags (linear in the number of tokens).</p>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-github w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>

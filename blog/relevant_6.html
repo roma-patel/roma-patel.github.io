@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<title>Roma Patel</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Montserrat", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-anchor,.fa-coffee {font-size:200px}
+a:link {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: green;
+    background-color: transparent;
+    text-decoration: none;
+}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-white" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white"></a>
+    <a href=/people/rpatel59/index.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About</a>
+    <a href=/people/rpatel59/research-code.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Research+Code</a>
+    <a href=/people/rpatel59/blog.html class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">Blog</a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href=/people/rpatel59/index.html class="w3-bar-item w3-button w3-padding-large">About</a>
+    <a href=/people/rpatel59/research-code.html class="w3-bar-item w3-button w3-padding-large">Research+Code</a>
+    <a href=/people/rpatel59/blog.html class="w3-bar-item w3-button w3-padding-large">Blog</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-black w3-center" style="padding:128px 16px">
+</header>
+
+<!-- First Grid -->
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>NLP Papers</h1>
+	<p>The general theme that these papers follow is <em>interpretability through explanation</em>. Concretely, how can we build models that allow us to view their decision-making and reasoning abiltiies, specifically through natural language explanations?</p>
+	<p>Here’s the list. Happy reading!</br></p>
+	<p></br><p>
+	<p></br><p>
+
+
+	<p>
+	e-SNLI: Natural Language Inference with Natural Language Explanations. Oana-Maria Camburum, Tim Rocktäschel, Thomas Lukasiewicz, PhilBlunsom.
+	<br> 
+Oana-Maria Camburum, Tim Rocktäschel, Thomas Lukasiewicz, PhilBlunsom.
+	
+	</br></p>
+	<p><small><i> 
+For a standard entailment task (SNLI) this paper attempts to create models that generate _explanations_ of their label prediction decisions --- whether entailment, contradiction or neutral. These explanations are free-form natural language sentences (as opposed to logical meaning representations or world attributes) and a data annotation effort for SNLI actually collects these natural language explanations for every (premise, hypothesis) pair. They then train models to predict a label as well as explain their decision (through a generative component trained to do so) and show pretty good explanation generation for the SNLI task, as well as comparable performance on the task itself and small gains to performance on some (not all) downsteam tasks. Overall, a nice attempt at interpretability through generative natural language explainability components, but this could benefit from a multi-task approach e.g., for all pairwise classification tasks in GLUE. But then given that there isn't explanation data for them to actually use them in multi-task settings in the same way, the world-model feedback approach could be potentially hugely useful. 
+		
+		</i></small></p>
+	<p></br><p>
+	
+
+		<p>
+Translating Neuralese.
+
+	<br> 
+	Jacob Andreas, Anca Dragan and Dan Klein.
+
+	</br></p>
+	<p><small><i> 
+This paper attempts interpretation of internal message vectors through translation, with feedback from execution against the world in the form of listener beliefs. Concretely, when any input is encoded into a message vector, it's meaning can be distributed over some set of belief states given the input context. Different agents (or a learned agent vs. a human) have different learned policies, but when trying to solve the same task are aiming for the same meaning, so we can try to map these "meanings" to learn to translate. They therefore try to have a translation model that takes human message generation as categorical, takes in agent representations, and fits a model to map from observations to word and phrases. There are some nice proofs and pretty simple math that shows that this "translation layer" will ensure that the semantics and pragmatics of the message will hold. Empirical results on communication cooperative games (colour and image reference games and a driving game) show that using this translation mechanism doesn't result in too much of a decrease in reward or performance, while allowing some level of interpretability. Pretty cool overall! Obvious limitations are that this is purely categorical and also not applicable to settings apart from the communicative task itself (although to push back, you could easily frame tasks to fit, and that's actually what we would want to get the easy speaker-listener feedback mechanism). It's also harder to have the world execution and denotational semantic meaning representations (that are preserved) in more real tasks, but those should all definitely fit in nicely with this framework. 
+
+		
+		</i></small></p>
+	<p></br><p>
+
+		<p>
+		Manipulating and measuring model interpretability. <br> Forough Poursabzi-Sangdeh, Daniel G Goldstein, Jake M Hofman, Jennifer Wortman Vaughan, Hanna Wallach
+
+
+	</br></p>
+	<p><small><i> 
+
+This paper conducts intensive experimental studies to get at model interpretability and decision making through human judgement or approval. For example, to assess if machine-learning models trained for a specific task have achieved their intended effect, they ask humans to follow or not-follow predictions made by models based on correctness or incorrectness, to try to simulate through a human, the decision making process of an ML model. Their experiments consist of functionally identical models with mutations made to only one of them, for experiments to measure things like _weight of advice_, or apartment prices or maintanence fees, or error detection through information overload. There are kind of surprising results that show that humans didn't prefer interpretability, and would have been better off, simply following decisions blindly rather than just adjusting models predictions. Moreover, the "transparent" models don't really help humans in any discernable way (e.g., to help them understand or correct inaccuracies in model predictions). Overall, the experiments across the board somewhat show that the factors (i.e., through exposing some parts of internal deicison-making capabiltiies of models) thought to improve interpretability often do not. This is not to say that humans in HCI settings won't benefit from more interpretable models, but I think, hints at the fact that we might need interpretation in a way that is more easily understandable i.e., through natural language. Somewhat a separate tangent from the motivation of this paper and the points they're trying to put across, but fits in nicely into how to build models that allow interpretation of their decisions.
+
+
+		
+		</i></small></p>
+	<p></br><p>
+
+
+
+
+		<p>
+
+		Weight of Evidence as a Basis for Human-Oriented Explanations. <br> David Alvarez-Melis, Hal Daumé III, Jennifer Wortman Vaughan, Hanna Wallach.
+
+
+	</br></p>
+	<p><small><i> 
+
+This paper is a nice overview and systematic guide to interpretability through explanations, going over when and how explanations produced by humans differ from models, and how we can use them to better understand model predictions and the decisions made. A small section in this paper is a nice historical overview that goes over age-old theories of explanation as a phenomenon and how it can be formalised in different ways. Overall, this paper is concerned with explanations of predictive machine-learning models, where if a model makes a prediction (i.e., produces a distribution over some set of symbols), they consider the predictive posterior distribution (i.e., the probability a certain answer was predicted for a certain input), and try to characterise the explanations they seek to obtain based on causes or evidences of that answer. The paper proposes explanation with _weight of evidence_, an information-theoretic approach to look at variable effects in predictive models, as well as a sequential explanation approach. Experiments on MNIST classification and other image datasets show that these "explanations" through estimating conditional probabilties show strong evidence for favourable classes. There's also a section where they propose a set of desiderata that an explanation should have, definitely worth a read.
+
+		
+		</i></small></p>
+	<p></br><p>
+
+
+	<p>
+Identifying and Controlling Important Neurons in Neural Machine Translation.
+		<br>
+Anthony Bau, Yonatan Belinkov, Hassan Sajjad, Nadir Durrani, Fahim Dalvi, James Glass.
+	</br></p>
+	<p><small><i> 
+		This paper (specifically for NMT, although the general method is applicable elsewhere) attempts to attribute "importance" to neurons based on which ones models rely on the most while making decisions. Consider a set of neural models trained for the same task, each of which consists of the same number of neurons, but may be trained in different ways or at different points in training. They attempt to delineate the effect of each neuron (across the models), by mapping words to their neuron activations, and then ranking the neurons based on correlations between pairs of models. This is mostly an attempt to see if the same neurons are weighted / given as much importance across models, thus highlighting where / how the final decisions are weighted for the task. They use a range of unsupervised correlation methods to find correlations and rank neurons across the models (e.g., regression and then rnaking by the regression mean error or looking at pearson correlation coefficients). Erasure experiments (i.e., masking out neurons to assess importance and difference in decisions) as well as supervised verification and heatmap visualisation of activations all show that the ranking seems to be verifiable in that the "important" neurons do have significant effects on certain sentence properties. Overall this was an interesting way to isolate "importance" of individual neurons by weighing across different runs, but it would be interesting to have a more fine-grained measure per model based on activations and inputs in correspondence with outputs.
+		</i></small></p>
+
+	<p></br><p>
+
+
+
+
+		<p>
+Can I Trust the Explainer? Verifying Post-hoc Explanatory Methods
+
+		<br>
+Oana-Maria Camburu, Eleonora Giunchiglia, Jakob Foerster, Thomas Lukasiewicz, Phil Blunsom
+
+	</br></p>
+	<p><small><i>
+			This paper attempts to look into the assumptions made by current explanatory methods that conflate _explanations_ made by models as somewhat equivalent (or at least indicative) of internal functionings or unreasonable correlations that their decisions might actually be a result of. They focus on two prevalent persepctives in the literature --- feature additivity and feature selection (TODO)
+		
+		</i></small></p>
+	<p></br><p>
+
+
+		<p>
+		A causal framework for explaining the predictions of black-box sequence-to-sequence models. <br> David Alvarez-Melis and Tommi S. Jaakkola.
+
+
+	</br></p>
+	<p><small><i> 
+		This paper attempts (in a way similar to the Belinkov NMT paper, except not at the neuron level) to create a framework to explain prediction of models by looking at dependencies of outputs on inputs across a range of variations (by systematically perturbing elements). For example, a sentence can be "perturbed" using an autoencoder or some kind of decoder that produces sentence variations, and therefore this sort of parallel data over many runs allows ascertaining causal dependencies of inputs and outputs. With the causal model they use a logistic regression classifier to predict occurences of output tokens given the inputs (based on frequencies of occurences in runs). Essentially, these dependencies form a dense bipartite graph between input and output tokens, and try to get a graph partitioning to highlight the relevant (and dependent causally) nodes in this graph. They evaluate on translation and grapheme to phoneme tasks and show that causal dependendcies between inputs and outputs can be inferred in this way. Overall, this was super interesting to see (for it's time, as well as, before the neuron analysis paper) but insights from this tie in really nicely with the more fine-grained interpretation methods.
+		</i></small></p>
+	<p></br><p>
+
+
+		<p>
+		Towards Robust Interpretability with Selfexplaining Neural Networks. <br> David Alvarez-Melis and Tommi S. Jaakkola.
+
+	</br></p>
+	<p><small><i> 
+		This paper attempts to propose *desiderata* for self-explainabel and interpretable models; specifically explicitness, faithfulness and stability. They attempt to build models that have interpretability built in architecturally (allowing explanations to be intrinsic to the model) thus enforcing the above, as well as experimenting with ways of regularisation to add robustness to meet the above criterion. 
+		</i></small></p>
+	<p></br><p>
+
+
+		<p>
+	Interpretability Beyond Feature Attribution: Quantitative Testing with Concept Activation Vectors (TCAV)
+		
+		<br> 
+
+		Been Kim, Martin Wattenberg, Justin Gilmer, Carrie Cai, James Wexler, Fernanda Viegas, Rory Sayres.
+	</br></p>
+	<p><small><i> 
+
+		
+		</i></small></p>
+	<p></br><p>
+
+<!---
+		<p>
+		Causal Mediation Analysis (r).
+	</br></p>
+	<p><small><i> 
+		This paper attempts to use _causal mediation analysis_ to look at specific parts of models and activations of neurons to ascertain causal relations and dependencies between inputs and outputs. Probing or post-hoc model analysis methods crucially only yield a correlationalmeasure between model representations and some external linguistic property over a space of outputs, rather then connecting causal factors (e.g., dependencies between inputs and outputs and the underlying influencing factors and effects that are intrinsic to the model architecture). They draw from Pearl's causal framework and define counterfactual outcomes under different interventions to quantify the direct and indirect effects in neural networks. They use to look into mediating effects of components of neural networks that cause gender bias to occur, as well as attempt to look at the ability to change the role of individual neurons to prevent this. 
+		</i></small></p>
+	<p></br><p>
+--->
+
+
+
+
+
+		<p>
+		Understanding the Effect of Accuracy on Trust in Machine Learning Models. <br> Ming Yin, Jennifer Wortman Vaughan, Hanna Wallach.
+
+	</br></p>
+	<p><small><i> 
+		
+		</i></small></p>
+	<p></br><p>
+
+
+
+
+		<p>
+		The Pragmatic Theory of Explanation. <br> B van Fraassen.
+
+	</br></p>
+	<p><small><i> 
+		
+		</i></small></p>
+	<p></br><p>
+
+		<p>
+		Studies in the Logic of Explanation. <br> Carl Hempel and Paul Oppenheim.
+
+	</br></p>
+	<p><small><i> 
+		
+		</i></small></p>
+	<p></br><p>
+
+		<p>
+		Contrastive explanation. <br> Peter Lipton.
+
+	</br></p>
+	<p><small><i> 
+		
+		</i></small></p>
+	<p></br><p>
+
+		<p>
+		Explanation and Abductive Inference. <br> Tania Lombrozo.
+
+	</br></p>
+	<p><small><i> 
+		
+		</i></small></p>
+	<p></br><p>
+
+		<p>
+		Judgment under uncertainty: Heuristics and biases. <br> Tversky and Kahneman.
+
+	</br></p>
+	<p><small><i> 
+		
+		</i></small></p>
+	<p></br><p>
+
+
+	<p></p>
+	<p></p>
+	<p></p>
+	<p></p>
+
+
+
+	
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity">  
+  <div class="w3-xlarge w3-padding-32">
+    <i class="fa fa-github w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+ </div>
+ <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
+</body>
+</html>
