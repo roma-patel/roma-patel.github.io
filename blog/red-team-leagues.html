@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The League: Breeding Adversaries to Harden a Model</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --paper: #F2EEE2;
+    --panel: #FBF9F1;
+    --panel-2: #EAE4D2;
+    --line: #DAD2BB;
+    --ink: #221E17;
+    --ink-dim: #6E665A;
+    --red: #B23A22;
+    --red-soft: #D9A692;
+    --amber: #9C6B12;
+    --teal: #276E63;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap{ max-width: 780px; margin: 0 auto; padding: 0 28px; }
+
+  .hero{
+    position: relative;
+    padding: 96px 0 64px;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .kicker{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .kicker::before{
+    content:"";
+    width: 7px; height: 7px;
+    background: var(--red);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(178,58,34,0.14);
+  }
+  h1{
+    font-family: 'Fraunces', serif;
+    font-optical-sizing: auto;
+    font-weight: 560;
+    font-size: 54px;
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    max-width: 11.5ch;
+  }
+  h1 em{ font-style: italic; color: var(--amber); font-weight: 500; }
+  .dek{
+    margin-top: 22px;
+    font-size: 18px;
+    color: var(--ink-dim);
+    max-width: 56ch;
+  }
+  .byline{
+    margin-top: 34px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    display:flex; gap: 18px; flex-wrap: wrap;
+  }
+  .byline span{ color: var(--ink); }
+
+  article{ padding: 64px 0 40px; }
+  .section-label{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin: 56px 0 14px;
+  }
+  h2{
+    font-family: 'Fraunces', serif;
+    font-weight: 540;
+    font-size: 30px;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  p{ font-size: 16.5px; color: #4B4437; margin-bottom: 18px; max-width: 66ch; }
+  p strong{ color: var(--ink); font-weight: 600; }
+  p em.tag{ font-style: normal; color: var(--amber); font-family:'IBM Plex Mono', monospace; font-size: 0.9em; }
+  a{ color: var(--teal); text-decoration: underline; text-decoration-color: rgba(39,110,99,0.35); text-underline-offset: 3px; }
+
+  .lede{ font-size: 19px; color: var(--ink); }
+
+  blockquote{
+    border-left: 2px solid var(--red);
+    padding-left: 20px;
+    margin: 28px 0;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink);
+    max-width: 60ch;
+  }
+
+  .figure{
+    margin: 40px 0 48px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 28px 20px 18px;
+    box-shadow: 0 1px 2px rgba(34,30,23,0.04);
+  }
+  .figure svg{ width: 100%; height: auto; display:block; }
+  .caption{
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .caption b{ color: var(--ink); }
+
+  .note{
+    background: var(--panel-2);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--amber);
+    padding: 16px 20px;
+    border-radius: 2px;
+    font-size: 14.5px;
+    color: var(--ink-dim);
+    margin: 30px 0;
+  }
+  .note.teal{ border-left-color: var(--teal); }
+  .note b{ color: var(--amber); font-family:'IBM Plex Mono', monospace; font-size: 11.5px; letter-spacing:0.05em; text-transform:uppercase; display:block; margin-bottom:6px; }
+  .note.teal b{ color: var(--teal); }
+  .note code{ font-family:'IBM Plex Mono', monospace; font-size: 0.92em; background: rgba(34,30,23,0.06); padding: 1px 5px; border-radius: 2px; color: var(--ink); }
+
+  .grid2{
+    display:grid; grid-template-columns: 1fr 1fr; gap: 18px;
+    margin: 30px 0;
+  }
+  .card{
+    background: var(--panel);
+    border: 1px solid var(--line);
+    padding: 18px 18px 16px;
+    border-radius: 4px;
+  }
+  .card h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .card.attacker h3{ color: var(--red); }
+  .card.base h3{ color: var(--teal); }
+  .card p{ font-size: 14.5px; margin: 0; max-width: none; color: var(--ink-dim); }
+
+  table.compare{
+    width: 100%;
+    border-collapse: collapse;
+    margin: 28px 0 34px;
+    font-size: 14.5px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  table.compare th, table.compare td{
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.compare th{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    background: var(--panel-2);
+  }
+  table.compare td.label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--ink-dim);
+    white-space: nowrap;
+  }
+  table.compare tr:last-child td{ border-bottom: none; }
+
+  footer{
+    border-top: 1px solid var(--line);
+    padding: 40px 0 80px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+  }
+
+  @media (max-width: 620px){
+    h1{ font-size: 38px; }
+    .grid2{ grid-template-columns: 1fr; }
+    table.compare{ font-size: 12.5px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">Notes / AI Alignment / Self-improvement</div>
+    <h1>League of LLMs:<br>creating <em>adversaries</em><br>to harden a model</h1>
+    <p class="dek">How a general recipe for evolving populations of neural networks for AlphaStar can also train populations of red-teaming language models with a "cooperative league" of adversaries.</p>
+    <div class="byline">
+      <!--<div>Draft <span>v0.3 — final</span></div>-->
+      <div>US patent <span>US20250322254A1</span></div>
+     <div>Patent owners: <span>Roma Patel, John Agapiou, Andrea Tacchetti, Marta Garnelo.</span></div>
+
+      <div>Est. read <span>13 min.</span> This blog post is based on a DeepMind patent that was never published as a paper with full technical details. The text here strictly only contains information published in the patent as extracted by an AI agent :) </div>
+    </div>
+  </div>
+
+  <article>
+
+    <p>Most red-teaming efforts for LLMs still look like a two-team duel. One adversarial model, or one team of humans, throws prompts at a base model until something breaks. It's effective, but it's narrow: a single attacker converges on whatever exploit works first, making it hard to have breadth over depth. What if we could have multiple attackers that focus on different exploits? What if we train them to self-improve and evolve from previous versions of themselves? The idea this post traces starts somewhere else entirely: not with red-teaming at all, but with a much older, more general question about how to train neural networks better by training a whole <em class="tag">population</em> of them at once––the sort of league training that led to AlphaStar developing strong evolutionary strategies. This blog post goes over these research methods and the resulting patents.</p>
+
+    <div class="section-label">01 — The precursor</div>
+    <h2>A breakthrough in population-based training</h2>
+    <p>Back in 2017, DeepMind published—and later patented—<a href="https://patents.google.com/patent/US11604985B2/en" target="_blank">Population Based Training (PBT)</a>, a general-purpose recipe for training neural networks. It has nothing to do with red-teaming or language models but is a general mechanism for self-improving and population-based strategies. The idea is: instead of training one network with one fixed set of hyperparameters, maintain a whole population of candidate networks. This forms a league, where every netowork is trained in parallel, each with its own hyperparameters. Periodically, compare each network on a <em class="tag">quality measure</em>. The weak ones get replaced by mutated copies of the strong ones to self-improve. Repeat.</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#B23A22"/>
+          </marker>
+        </defs>
+        <circle cx="350" cy="190" r="56" fill="#FBF9F1" stroke="#276E63" stroke-width="2"/>
+        <text x="350" y="184" text-anchor="middle" fill="#221E17" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600">TARGET</text>
+        <text x="350" y="200" text-anchor="middle" fill="#6E665A" font-family="IBM Plex Mono, monospace" font-size="10">TASK</text>
+
+        <g font-family="IBM Plex Mono, monospace" font-size="9.5">
+          <g>
+            <line x1="350" y1="34" x2="350" y2="134" stroke="#9C6B12" stroke-width="1.6" marker-end="url(#arrow-red)"/>
+            <circle cx="350" cy="34" r="20" fill="#FBF9F1" stroke="#9C6B12" stroke-width="2"/>
+            <text x="350" y="38" text-anchor="middle" fill="#9C6B12">C1</text>
+          </g>
+          <g>
+            <line x1="490" y1="80" x2="392" y2="150" stroke="#9C6B12" stroke-width="1.6" marker-end="url(#arrow-red)"/>
+            <circle cx="490" cy="80" r="20" fill="#FBF9F1" stroke="#9C6B12" stroke-width="2"/>
+            <text x="490" y="84" text-anchor="middle" fill="#9C6B12">C2</text>
+          </g>
+          <g>
+            <line x1="545" y1="190" x2="406" y2="190" stroke="#B23A22" stroke-width="1.4" marker-end="url(#arrow-red)"/>
+            <circle cx="545" cy="190" r="20" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+            <text x="545" y="194" text-anchor="middle" fill="#B23A22">C3</text>
+          </g>
+          <g>
+            <line x1="490" y1="300" x2="392" y2="230" stroke="#B23A22" stroke-width="1.4" marker-end="url(#arrow-red)"/>
+            <circle cx="490" cy="300" r="20" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+            <text x="490" y="304" text-anchor="middle" fill="#B23A22">C4</text>
+          </g>
+          <g>
+            <line x1="350" y1="346" x2="350" y2="246" stroke="#D9A692" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arrow-red)"/>
+            <circle cx="350" cy="346" r="20" fill="#FBF9F1" stroke="#D9A692" stroke-width="2"/>
+            <text x="350" y="350" text-anchor="middle" fill="#B78A7A">C5</text>
+          </g>
+          <g>
+            <line x1="210" y1="300" x2="308" y2="230" stroke="#D9A692" stroke-width="1.2" stroke-dasharray="3 3" marker-end="url(#arrow-red)"/>
+            <circle cx="210" cy="300" r="20" fill="#FBF9F1" stroke="#D9A692" stroke-width="2"/>
+            <text x="210" y="304" text-anchor="middle" fill="#B78A7A">C6</text>
+          </g>
+          <g>
+            <line x1="155" y1="190" x2="294" y2="190" stroke="#B23A22" stroke-width="1.4" marker-end="url(#arrow-red)"/>
+            <circle cx="155" cy="190" r="20" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+            <text x="155" y="194" text-anchor="middle" fill="#B23A22">C7</text>
+          </g>
+          <g>
+            <line x1="210" y1="80" x2="308" y2="150" stroke="#9C6B12" stroke-width="1.6" marker-end="url(#arrow-red)"/>
+            <circle cx="210" cy="80" r="20" fill="#FBF9F1" stroke="#9C6B12" stroke-width="2"/>
+            <text x="210" y="84" text-anchor="middle" fill="#9C6B12">C8</text>
+          </g>
+        </g>
+
+        <g font-family="IBM Plex Mono, monospace" font-size="10.5" fill="#6E665A">
+          <circle cx="40" cy="360" r="5" fill="#FBF9F1" stroke="#9C6B12" stroke-width="2"/>
+          <text x="52" y="364">top scorer — cloned &amp; mutated</text>
+          <circle cx="280" cy="360" r="5" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+          <text x="292" y="364">mid pack — kept, retried</text>
+          <circle cx="480" cy="360" r="5" fill="#FBF9F1" stroke="#D9A692" stroke-width="2"/>
+          <text x="492" y="364">bottom — replaced this round</text>
+        </g>
+      </svg>
+      <div class="caption"><b>Figure 1.</b> Population Based Training, as patented in 2017 (US11604985B2). Eight candidate networks (C1–C8) train in parallel on a shared task. Every so often, the bottom performers on the quality measure are overwritten by mutated copies of the top performers — exploit what works, explore around it.</div>
+    </div>
+    
+
+
+    <p>The mechanism is: <strong>score, cull, clone, mutate, repeat.</strong> The original patent's examples are image classification and machine translation. But buried in the claims is one detail that makes the breakthroughs that follow possible: the "quality measure" scoring each candidate is allowed to include <em>the candidate's robustness to adversarial attack</em>. That's the seed. If robustness can be a fitness criterion, then in principle you could run this same population loop with the fitness criterion flipped — reward a candidate not for resisting attack, but for <em>succeeding</em> at one, as an adversary would.</p>
+    
+    <div class="section-label">02 — Proven on StarCraft</div>
+    <h2>Self-improving leagues for StarCraft</h2>
+    <p> In January 2019, DeepMind filed a second, more specific patent — <a href="https://patents.google.com/patent/US11627165B2" target="_blank">"Multi-agent reinforcement learning with matchmaking policies"</a> (US11627165B2) — to cover the system built for AlphaStar, the agent built for StarCraft II agent. Where PBT describes a population trained in isolation against a shared task, this one describes populations trained <em>against each other</em>: a pool of "learner policies" that improve by playing matches against other members of the same pool, plus "fixed policies"—frozen past versions, periodically checkpointed off—and a matchmaking policy that decides who plays whom.</p>
+
+    <!--<p>Two details make this a close ancestor of PBT. First, AlphaStar's league explicitly includes agent types whose entire purpose is adversarial: "exploiter" agents, trained not to win in general but specifically to find and expose weaknesses in the main agent. Second, one of this patent's three named inventors also co-invented the original 2017 PBT patent. The same researchers are involved in both the general population mechanism and its first adversarial, game-theoretic specialization.</p>-->
+
+    <div class="figure">
+      <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow-violet" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+            <path d="M0,0 L7,3.5 L0,7 Z" fill="#6A5A8C"/>
+          </marker>
+        </defs>
+        <g font-family="IBM Plex Mono, monospace" font-size="10.5">
+
+          <path d="M 350 70  A 150 150 0 0 1 477 135" fill="none" stroke="#6A5A8C" stroke-width="1.6" marker-end="url(#arrow-violet)"/>
+          <path d="M 486 152 A 150 150 0 0 1 442 320" fill="none" stroke="#6A5A8C" stroke-width="1.6" marker-end="url(#arrow-violet)"/>
+          <path d="M 425 335 A 150 150 0 0 1 258 335" fill="none" stroke="#6A5A8C" stroke-width="1.6" marker-end="url(#arrow-violet)"/>
+          <path d="M 240 322 A 150 150 0 0 1 214 152" fill="none" stroke="#6A5A8C" stroke-width="1.6" marker-end="url(#arrow-violet)"/>
+          <path d="M 223 135 A 150 150 0 0 1 335 70" fill="none" stroke="#6A5A8C" stroke-width="1.6" marker-end="url(#arrow-violet)"/>
+
+          <circle cx="350" cy="60" r="50" fill="#FBF9F1" stroke="#221E17" stroke-width="1.6"/>
+          <text x="350" y="52" text-anchor="middle" fill="#221E17" font-weight="600">POOL</text>
+          <text x="350" y="66" text-anchor="middle" fill="#6E665A" font-size="9">learners + fixed + exploiters</text>
+
+          <circle cx="512" cy="150" r="50" fill="#FBF9F1" stroke="#6A5A8C" stroke-width="1.6"/>
+          <text x="512" y="143" text-anchor="middle" fill="#6A5A8C" font-weight="600">MATCHMAKING</text>
+          <text x="512" y="158" text-anchor="middle" fill="#6E665A" font-size="9">weighted by performance</text>
+
+          <circle cx="460" cy="335" r="50" fill="#FBF9F1" stroke="#B23A22" stroke-width="1.6"/>
+          <text x="460" y="328" text-anchor="middle" fill="#B23A22" font-weight="600">MATCH</text>
+          <text x="460" y="343" text-anchor="middle" fill="#6E665A" font-size="9">learner vs. selected opponent</text>
+
+          <circle cx="240" cy="335" r="50" fill="#FBF9F1" stroke="#9C6B12" stroke-width="1.6"/>
+          <text x="240" y="328" text-anchor="middle" fill="#9C6B12" font-weight="600">REWARD</text>
+          <text x="240" y="343" text-anchor="middle" fill="#6E665A" font-size="9">win / loss + internal reward</text>
+
+          <circle cx="188" cy="150" r="50" fill="#FBF9F1" stroke="#276E63" stroke-width="1.6"/>
+          <text x="188" y="143" text-anchor="middle" fill="#276E63" font-weight="600">UPDATE</text>
+          <text x="188" y="158" text-anchor="middle" fill="#6E665A" font-size="9">A2C / UPGO — then freeze in</text>
+        </g>
+        <text x="350" y="215" text-anchor="middle" fill="#A69C88" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1">learners periodically checkpoint into POOL as fixed policies</text>
+      </svg>
+      <div class="caption"><b>Figure 2.</b> The AlphaStar league mechanism from US11627165B2. A matchmaking policy — weighted toward stronger or more instructive opponents — decides who each learner plays; exploiter agents are rewarded purely for beating the main agent.</div>
+    </div>
+
+
+    <div class="section-label">03 — Individual adversarial LLMs</div>
+    <h2>Automated adversarial red-teaming</h2>
+    
+    <!--<div class="note">-->
+    <!--  <b>Where the trail went cold, the first time</b>-->
+    <!--  This was as far as the extrapolation went originally — a plausible-sounding application of a 2017 general-purpose patent to a problem it was never written for. Good enough for a blog post, but worth being honest that it was invented, not documented.-->
+    <!--</div>-->
+    
+        <!--<h3>On LLM red-teaming as a duel</h3>-->
+    <p>In February 2022, <a href="https://arxiv.org/abs/2202.03286" 
+      target="_blank">"Red Teaming Language Models with Language Models"</a> was published by Perez et. al., as
+      one of the first systems to automate LLM red-teaming by using one language model 
+      to attack another, rather than relying on humans to hand-write test cases. 
+      It's still cited as one of the first works by nearly everything published on 
+      automated red-teaming since. What Perez et al. evaluated were strategies on creating an LLM attacker in increasing 
+      order of sophistication: zero-shot generation, few-shot generation, supervised 
+      fine-tuning on the zero-shot attacker's own most successful attempts, and 
+       reinforcement learning, where the attacker was trained against a classifier 
+      that scored how offensive the target's replies were. The RL-trained attacker found 
+      the most and hardest failures, at some cost to how diverse or realistic its prompts
+       read—a diversity-vs-difficulty tradeoff the paper is explicit about.</p>
+
+<div class="figure">
+      <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow-perez" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#221E17"/>
+          </marker>
+        </defs>
+        <g font-family="IBM Plex Mono, monospace" font-size="11">
+          <circle cx="130" cy="130" r="58" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+          <text x="130" y="123" text-anchor="middle" fill="#B23A22" font-weight="600">ATTACKER LM</text>
+          <text x="130" y="140" text-anchor="middle" fill="#6E665A" font-size="9">zero-shot &#8594; few-shot &#8594; SL &#8594; RL</text>
+
+          <line x1="188" y1="130" x2="272" y2="130" stroke="#221E17" stroke-width="1.6" marker-end="url(#arrow-perez)"/>
+          <text x="230" y="120" text-anchor="middle" fill="#6E665A" font-size="9">test question</text>
+
+          <circle cx="350" cy="130" r="58" fill="#FBF9F1" stroke="#276E63" stroke-width="2"/>
+          <text x="350" y="123" text-anchor="middle" fill="#276E63" font-weight="600">TARGET LM</text>
+          <text x="350" y="140" text-anchor="middle" fill="#6E665A" font-size="9">280B dialogue model</text>
+
+          <line x1="408" y1="130" x2="492" y2="130" stroke="#221E17" stroke-width="1.6" marker-end="url(#arrow-perez)"/>
+          <text x="450" y="120" text-anchor="middle" fill="#6E665A" font-size="9">reply</text>
+
+          <circle cx="570" cy="130" r="58" fill="#FBF9F1" stroke="#9C6B12" stroke-width="2"/>
+          <text x="570" y="123" text-anchor="middle" fill="#9C6B12" font-weight="600">CLASSIFIER</text>
+          <text x="570" y="140" text-anchor="middle" fill="#6E665A" font-size="9">offensiveness score</text>
+
+          <path d="M 570 188 C 570 230, 130 230, 130 188" fill="none" stroke="#B23A22" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#arrow-perez)"/>
+          <text x="350" y="238" text-anchor="middle" fill="#6E665A" font-size="9">reward, used to train the attacker further</text>
+        </g>
+      </svg>
+      <div class="caption"><b>Figure 3.</b> The duel from Perez et al., 2022—one attacker LM, trained with methods from zero-shot generation up to reinforcement learning, tested against one target model, scored by an offensiveness classifier.</div>
+    </div>
+
+    <p>The results were significant on their own: tens of thousands of offensive replies out of a single 280B-parameter chatbot, plus other harms surfaced through prompt engineering — the chatbot discussing specific groups of people offensively, inventing personal and hospital phone numbers as its own contact information, leaking fragments of its private training data, and harms that only showed up partway through multi-turn conversations. But structurally, it's still one attacker. </p>
+
+    <div class="section-label">04 — Where we took it</div>
+    <h2>Extrapolating: a league of LLM attackers </h2>
+
+<!--<p>Instead of training generalist candidates on a shared task, train a population of adversarial language models whose "quality measure" is how well each one breaks a base model. A novelty term stops the whole population from collapsing onto one easy exploit. Run it for enough generations and you'd expect the population's attacks to fan out across a base model's failure modes rather than circling one:</p>-->
+
+<p>In April 2024, came <a href="https://patents.google.com/patent/US20250322254A1/en" 
+      target="_blank">"Training a population of adversarial neural networks to 
+      improve a base neural network"</a> (US 18/636,971, published as US 2025/0322254 A1). 
+      It's close to exactly the merger we'd sketched: a population of adversarial
+      language models, trained specifically to break a base language model, described
+      in the patent's own words as a <strong>"cooperative league."</strong> 
+      
+    This, in effect, combines two separate half-finished ideas lying around: 
+    a single RL-trained language model that could already find real failures in a
+     real chatbot (Perez et al.), and a proven mechanism, from PBT and AlphaStar, for
+     running a whole population of agents against each other instead of just one.
+    Nobody had put them together yet—as far as we could find, no public paper 
+    or patent from that window merges the two. So we sketched what it would look
+    like: take the PBT-style score-cull-clone-mutate loop, but instead of training
+    generalist candidates on a shared task, train a population of LLM
+    attackers whose "quality measure" is how well each one breaks a base model. Which in essence is just the red-teaming task that a single model from Perez et. al., trains for. 
+        A novelty term stops the whole population from collapsing onto one easy exploit,
+        the failure mode a single attacker is already prone to. Run it for enough 
+        generations and you'd expect the attacks to fan out across a base model's 
+        failure modes rather than circling one:</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="250" x2="660" y2="250" stroke="#DAD2BB" stroke-width="1"/>
+        <line x1="60" y1="250" x2="60" y2="30" stroke="#DAD2BB" stroke-width="1"/>
+        <text x="360" y="285" text-anchor="middle" fill="#6E665A" font-family="IBM Plex Mono, monospace" font-size="11">generation &#8594;</text>
+        <text x="30" y="140" text-anchor="middle" fill="#6E665A" font-family="IBM Plex Mono, monospace" font-size="11" transform="rotate(-90 30 140)">harm category spread</text>
+
+        <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#6E665A">
+          <text x="140" y="266" text-anchor="middle">gen 1</text>
+          <text x="300" y="266" text-anchor="middle">gen 6</text>
+          <text x="460" y="266" text-anchor="middle">gen 12</text>
+          <text x="600" y="266" text-anchor="middle">gen 20</text>
+        </g>
+
+        <g fill="#B23A22" opacity="0.85">
+          <circle cx="132" cy="150" r="5"/>
+          <circle cx="140" cy="146" r="5"/>
+          <circle cx="146" cy="156" r="5"/>
+          <circle cx="136" cy="160" r="5"/>
+          <circle cx="150" cy="150" r="5"/>
+        </g>
+
+        <g fill="#9C6B12" opacity="0.9">
+          <circle cx="290" cy="150" r="5"/>
+          <circle cx="300" cy="140" r="5"/>
+          <circle cx="310" cy="160" r="5"/>
+          <circle cx="280" cy="100" r="5"/>
+          <circle cx="295" cy="190" r="5"/>
+        </g>
+
+        <g fill="#9C6B12" opacity="0.9">
+          <circle cx="440" cy="70" r="5"/>
+          <circle cx="450" cy="80" r="5"/>
+          <circle cx="460" cy="150" r="5"/>
+          <circle cx="470" cy="160" r="5"/>
+          <circle cx="450" cy="215" r="5"/>
+          <circle cx="470" cy="225" r="5"/>
+        </g>
+
+        <g fill="#276E63" opacity="0.9">
+          <circle cx="580" cy="55" r="5"/>
+          <circle cx="595" cy="60" r="5"/>
+          <circle cx="600" cy="120" r="5"/>
+          <circle cx="590" cy="150" r="5"/>
+          <circle cx="605" cy="190" r="5"/>
+          <circle cx="580" cy="220" r="5"/>
+          <circle cx="615" cy="235" r="5"/>
+        </g>
+
+        <path d="M140,150 C220,150 240,150 295,145" stroke="#C9BBA0" stroke-width="1" fill="none" opacity="0.7"/>
+        <path d="M300,140 C370,110 400,80 445,72" stroke="#C9BBA0" stroke-width="1" fill="none" opacity="0.7"/>
+        <path d="M300,190 C370,215 400,220 455,220" stroke="#C9BBA0" stroke-width="1" fill="none" opacity="0.7"/>
+        <path d="M460,150 C520,150 540,140 590,120" stroke="#BFCFC9" stroke-width="1" fill="none" opacity="0.7"/>
+        <path d="M450,80 C500,60 540,55 590,58" stroke="#BFCFC9" stroke-width="1" fill="none" opacity="0.7"/>
+        <path d="M450,215 C500,220 540,225 585,222" stroke="#BFCFC9" stroke-width="1" fill="none" opacity="0.7"/>
+      </svg>
+      <div class="caption"><b>Figure 2.</b> An illustrative diagram: a season's worth of generations under a PBT-style loop can be repurposed for red-teaming, plotted by how spread the surviving lineages are across harm categories. Early generations herd onto whatever's easiest to find (red); a novelty term forces later generations to fan out (amber → teal) instead of over-fitting to one exploit.</div>
+    </div>
+    
+
+    
+
+    <p>Each adversary can be assigned a specific downstream rule to 
+      break e.g., no medical advice, no bias, no data leakage, and the whole roster 
+      updates every iteration alongside the model it's attacking, through opposing 
+      rewards rather than culling or matchmaking.</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow-red2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L6,3 L0,6 Z" fill="#B23A22"/>
+          </marker>
+        </defs>
+        <circle cx="350" cy="190" r="58" fill="#FBF9F1" stroke="#276E63" stroke-width="2"/>
+        <text x="350" y="184" text-anchor="middle" fill="#221E17" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600">BASE</text>
+        <text x="350" y="200" text-anchor="middle" fill="#6E665A" font-family="IBM Plex Mono, monospace" font-size="10">NETWORK</text>
+
+        <g font-family="IBM Plex Mono, monospace" font-size="9">
+          <g>
+            <line x1="350" y1="32" x2="350" y2="132" stroke="#B23A22" stroke-width="1.6" marker-end="url(#arrow-red2)"/>
+            <circle cx="350" cy="32" r="26" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+            <text x="350" y="30" text-anchor="middle" fill="#B23A22" font-weight="600">A1</text>
+            <text x="350" y="41" text-anchor="middle" fill="#6E665A" font-size="7.5">toxicity</text>
+          </g>
+          <g>
+            <line x1="498" y1="75" x2="398" y2="148" stroke="#B23A22" stroke-width="1.6" marker-end="url(#arrow-red2)"/>
+            <circle cx="498" cy="75" r="26" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+            <text x="498" y="73" text-anchor="middle" fill="#B23A22" font-weight="600">A2</text>
+            <text x="498" y="84" text-anchor="middle" fill="#6E665A" font-size="7.5">bias</text>
+          </g>
+          <g>
+            <line x1="552" y1="190" x2="410" y2="190" stroke="#B23A22" stroke-width="1.6" marker-end="url(#arrow-red2)"/>
+            <circle cx="552" cy="190" r="26" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+            <text x="552" y="188" text-anchor="middle" fill="#B23A22" font-weight="600">A3</text>
+            <text x="552" y="199" text-anchor="middle" fill="#6E665A" font-size="7.5">data leakage</text>
+          </g>
+          <g>
+            <line x1="498" y1="305" x2="398" y2="232" stroke="#B23A22" stroke-width="1.6" marker-end="url(#arrow-red2)"/>
+            <circle cx="498" cy="305" r="26" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+            <text x="498" y="303" text-anchor="middle" fill="#B23A22" font-weight="600">A4</text>
+            <text x="498" y="314" text-anchor="middle" fill="#6E665A" font-size="7.5">medical advice</text>
+          </g>
+          <g>
+            <line x1="350" y1="348" x2="350" y2="248" stroke="#B23A22" stroke-width="1.6" marker-end="url(#arrow-red2)"/>
+            <circle cx="350" cy="348" r="26" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+            <text x="350" y="346" text-anchor="middle" fill="#B23A22" font-weight="600">A5</text>
+            <text x="350" y="357" text-anchor="middle" fill="#6E665A" font-size="7.5">legal advice</text>
+          </g>
+          <g>
+            <line x1="202" y1="305" x2="302" y2="232" stroke="#B23A22" stroke-width="1.6" marker-end="url(#arrow-red2)"/>
+            <circle cx="202" cy="305" r="26" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+            <text x="202" y="303" text-anchor="middle" fill="#B23A22" font-weight="600">A6</text>
+            <text x="202" y="314" text-anchor="middle" fill="#6E665A" font-size="7.5">off-topic</text>
+          </g>
+          <g>
+            <line x1="148" y1="190" x2="290" y2="190" stroke="#B23A22" stroke-width="1.6" marker-end="url(#arrow-red2)"/>
+            <circle cx="148" cy="190" r="26" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+            <text x="148" y="188" text-anchor="middle" fill="#B23A22" font-weight="600">A7</text>
+            <text x="148" y="199" text-anchor="middle" fill="#6E665A" font-size="7.5">aggression</text>
+          </g>
+          <g>
+            <line x1="202" y1="75" x2="302" y2="148" stroke="#B23A22" stroke-width="1.6" marker-end="url(#arrow-red2)"/>
+            <circle cx="202" cy="75" r="26" fill="#FBF9F1" stroke="#B23A22" stroke-width="2"/>
+            <text x="202" y="73" text-anchor="middle" fill="#B23A22" font-weight="600">A8</text>
+            <text x="202" y="84" text-anchor="middle" fill="#6E665A" font-size="7.5">sensitive info</text>
+          </g>
+        </g>
+      </svg>
+      <div class="caption"><b>Figure 3.</b> The actual "cooperative league" from US 2025/0322254 A1. Each adversarial network (A1–A8) is trained against a specific downstream task criterion — the patent's "targeted rule violation" strategy — rather than evolved via a shared fitness score.</div>
+    </div>
+
+    <!--<div class="section-label">04 — Under the hood</div>-->
+    <!--<h2>The opposing-reward loop</h2>-->
+    
+    <h2>The opposing-reward loop</h2>
+
+    <p>At each training iteration, an adversarial network turns an "adversarial input" — drawn from antagonistic dialogue data into a prompt. The base network answers. A reward subsystem, mixing rules-based reward models with a human-preference (Elo-style) model, scores the answer against the downstream criteria. The base network is rewarded for staying aligned; the adversary gets the mirror-image reward for causing a violation. Both are updated with synchronous advantage actor-critic (A2C), with a KL-divergence penalty holding either network back from drifting too far from its pretrained starting point in any one step.</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow-teal2" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto">
+            <path d="M0,0 L7,3.5 L0,7 Z" fill="#276E63"/>
+          </marker>
+        </defs>
+        <g font-family="IBM Plex Mono, monospace" font-size="10.5">
+
+          <path d="M 350 70  A 150 150 0 0 1 477 135" fill="none" stroke="#276E63" stroke-width="1.6" marker-end="url(#arrow-teal2)"/>
+          <path d="M 486 152 A 150 150 0 0 1 442 320" fill="none" stroke="#276E63" stroke-width="1.6" marker-end="url(#arrow-teal2)"/>
+          <path d="M 425 335 A 150 150 0 0 1 258 335" fill="none" stroke="#276E63" stroke-width="1.6" marker-end="url(#arrow-teal2)"/>
+          <path d="M 240 322 A 150 150 0 0 1 214 152" fill="none" stroke="#276E63" stroke-width="1.6" marker-end="url(#arrow-teal2)"/>
+          <path d="M 223 135 A 150 150 0 0 1 335 70" fill="none" stroke="#276E63" stroke-width="1.6" marker-end="url(#arrow-teal2)"/>
+
+          <circle cx="350" cy="60" r="48" fill="#FBF9F1" stroke="#B23A22" stroke-width="1.6"/>
+          <text x="350" y="53" text-anchor="middle" fill="#B23A22" font-weight="600">ADVERSARY</text>
+          <text x="350" y="66" text-anchor="middle" fill="#6E665A" font-size="9">generates prompt</text>
+
+          <circle cx="512" cy="150" r="48" fill="#FBF9F1" stroke="#276E63" stroke-width="1.6"/>
+          <text x="512" y="143" text-anchor="middle" fill="#276E63" font-weight="600">BASE NETWORK</text>
+          <text x="512" y="158" text-anchor="middle" fill="#6E665A" font-size="9">responds to prompt</text>
+
+          <circle cx="460" cy="335" r="48" fill="#FBF9F1" stroke="#9C6B12" stroke-width="1.6"/>
+          <text x="460" y="328" text-anchor="middle" fill="#9C6B12" font-weight="600">REWARD MODELS</text>
+          <text x="460" y="343" text-anchor="middle" fill="#6E665A" font-size="9">rules + preference</text>
+
+          <circle cx="240" cy="335" r="48" fill="#FBF9F1" stroke="#9C6B12" stroke-width="1.6"/>
+          <text x="240" y="328" text-anchor="middle" fill="#9C6B12" font-weight="600">OPPOSING REWARD</text>
+          <text x="240" y="343" text-anchor="middle" fill="#6E665A" font-size="9">base &#8593; / adversary &#8595;</text>
+
+          <circle cx="188" cy="150" r="48" fill="#FBF9F1" stroke="#B23A22" stroke-width="1.6"/>
+          <text x="188" y="143" text-anchor="middle" fill="#B23A22" font-weight="600">A2C UPDATE</text>
+          <text x="188" y="158" text-anchor="middle" fill="#6E665A" font-size="9">+ KL penalty, both nets</text>
+        </g>
+        <text x="350" y="215" text-anchor="middle" fill="#A69C88" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1">repeated every training iteration</text>
+      </svg>
+      <div class="caption"><b>Figure 4.</b> The reinforcement-learning loop actually described in US 2025/0322254 A1 — joint, opposing-reward RL, not evolutionary selection.</div>
+    </div>
+
+    <div class="grid2">
+      <div class="card attacker">
+        <h3>Adversarial reward</h3>
+        <p>A measure of how likely the base network's output is to violate its assigned criterion — maximized by the adversary.</p>
+      </div>
+      <div class="card base">
+        <h3>Base reward</h3>
+        <p>The mirror image — the base network is rewarded for staying aligned, plus (where used) a human-preference score, even against adversarial prompts.</p>
+      </div>
+    </div>
+
+    <p>On efficiency: a shared "hydra" architecture is used — described as a frozen pretrained core with separate fine-tunable heads for policy, value, a reference "teacher" policy, and the reward signals. The base network and the adversaries can be different head-configurations of the <em>same</em> pretrained foundation model, which is the patent's stated reason this is compute-efficient — no need to train a second model from scratch just to attack the first.</p>
+
+    <div class="section-label">05 — Does it actually work</div>
+    <h2>What the patent's results show</h2>
+    <p>Figure 7 of the patent reports results from training a base network this way. Reward improves over training iterations as the population evolves, but it's noisy and not monotonic; the chart shows a dip at iteration 2 before recovering by iteration 3. More strikingly: a single generalist adversarial network, trained against all criteria at once, produced a <strong>150% increase</strong> in base network reward over training with no adversarial augmentation at all. Splitting that one adversary into a specialized roster—one network per criterion—pushed performance higher still, though the marginal gain from specializing was smaller than the initial jump from having any adversarial population at all.</p>
+
+    <div class="figure">
+      <svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+        <g>
+          <line x1="50" y1="250" x2="330" y2="250" stroke="#DAD2BB" stroke-width="1"/>
+          <line x1="50" y1="250" x2="50" y2="40" stroke="#DAD2BB" stroke-width="1"/>
+          <text x="190" y="280" text-anchor="middle" fill="#6E665A" font-family="IBM Plex Mono, monospace" font-size="10.5">training iteration &#8594;</text>
+          <text x="24" y="145" text-anchor="middle" fill="#6E665A" font-family="IBM Plex Mono, monospace" font-size="10.5" transform="rotate(-90 24 145)">base reward</text>
+
+          <polyline points="70,190 150,140 230,165 310,90" fill="none" stroke="#276E63" stroke-width="2.2"/>
+          <circle cx="70" cy="190" r="5" fill="#276E63"/>
+          <circle cx="150" cy="140" r="5" fill="#276E63"/>
+          <circle cx="230" cy="165" r="5" fill="#276E63"/>
+          <circle cx="310" cy="90" r="5" fill="#276E63"/>
+
+          <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#6E665A">
+            <text x="70" y="266" text-anchor="middle">0</text>
+            <text x="150" y="266" text-anchor="middle">1</text>
+            <text x="230" y="266" text-anchor="middle">2</text>
+            <text x="310" y="266" text-anchor="middle">3</text>
+          </g>
+        </g>
+
+        <g>
+          <line x1="420" y1="250" x2="660" y2="250" stroke="#DAD2BB" stroke-width="1"/>
+          <line x1="420" y1="250" x2="420" y2="40" stroke="#DAD2BB" stroke-width="1"/>
+          <text x="540" y="280" text-anchor="middle" fill="#6E665A" font-family="IBM Plex Mono, monospace" font-size="10.5">adversarial population type</text>
+
+          <rect x="445" y="228" width="46" height="22" fill="#D9A692"/>
+          <rect x="515" y="80" width="46" height="170" fill="#9C6B12"/>
+          <rect x="585" y="55" width="46" height="195" fill="#B23A22"/>
+
+          <text x="468" y="222" text-anchor="middle" fill="#6E665A" font-family="IBM Plex Mono, monospace" font-size="9">baseline</text>
+          <text x="538" y="72" text-anchor="middle" fill="#6E665A" font-family="IBM Plex Mono, monospace" font-size="9">+150%</text>
+          <text x="608" y="47" text-anchor="middle" fill="#6E665A" font-family="IBM Plex Mono, monospace" font-size="9">specialized</text>
+
+          <g font-family="IBM Plex Mono, monospace" font-size="8" fill="#6E665A">
+            <text x="468" y="266" text-anchor="middle">none</text>
+            <text x="538" y="266" text-anchor="middle">1 generalist</text>
+            <text x="608" y="266" text-anchor="middle">N per-rule</text>
+          </g>
+        </g>
+      </svg>
+      <div class="caption"><b>Figure 5.</b> Redrawn from the patent's reported Fig. 7 results. Left: base reward across training iterations. Right: reward by adversarial population type.</div>
+    </div>
+
+    <!--<blockquote>The population doesn't have to evolve by dying and mutating to be worth calling a population. Sometimes it just has to disagree with itself, every round, about what the model got wrong.</blockquote>-->
+
+    <!--<div class="section-label">06 — Two patents, one lineage</div>-->
+    <!--<h2>What actually carried over</h2>-->
+    <p>Laid side by side, there are some pretty big differences. What the 2024 patent keeps from 2017 is the population framing itself: many candidates, evaluated in parallel, evolving over training, and the specific idea that adversarial performance can be the thing being optimized for. What it replaces almost entirely is the mechanism.</p>
+
+    <table class="compare">
+      <tr>
+        <th>Feature</th>
+        <th>US11604985B2 (2017) — PBT</th>
+        <th>US20250322254A1 (2024) — League</th>
+      </tr>
+      <tr>
+        <td class="label">Domain</td>
+        <td>General neural network training (image classification, translation, GANs)</td>
+        <td>Language and multimodal model alignment specifically</td>
+      </tr>
+      <tr>
+        <td class="label">Mechanism</td>
+        <td>Evolutionary: score, cull, clone, mutate</td>
+        <td>Reinforcement learning: joint training on opposing rewards (A2C + KL)</td>
+      </tr>
+      <tr>
+        <td class="label">Adversarial role</td>
+        <td>One possible term in a broader "quality measure"</td>
+        <td>The entire point — a dedicated population trained only to attack</td>
+      </tr>
+      <tr>
+        <td class="label">Specialization</td>
+        <td>Not addressed</td>
+        <td>Explicit — each adversary can target one named downstream criterion</td>
+      </tr>
+      <tr>
+        <td class="label">Compute strategy</td>
+        <td>Independent candidates</td>
+        <td>Shared pretrained "hydra" core, separate fine-tunable heads</td>
+      </tr>
+    </table>
+
+    <div class="section-label">07 — Where this gets hard</div>
+    <h2>The caveats: efficiency, scale and noise</h2>
+    <p>The 2024 patent is candid about the noisiness in its own numbers—the reward dip at iteration 2 sits right there in the figure. A joint RL system with opposing rewards is inherently harder to stabilize than a single supervised run, which is exactly what the KL penalty is doing work to contain. Running N adversarial networks instead of one is N times the inference cost per round which was not intractable compute-wise at the time. Moreover, specialization assumes "safety" decomposes cleanly into separable rules. These real criteria interact in ways a rules-based reward model may not cleanly untangle. And the earlier, evolutionary framing has its own known failure mode worth remembering even though it isn't the mechanism actually used here: without an explicit diversity term, a population under selection pressure will converge on whatever's easiest, not whatever's most informative.</p>
+
+    <p>The core result however still holds: augmenting training with even one adversarial network beat the no-adversary baseline by a wide margin, and specialization helped further. The real throughline across both patents isn't a specific algorithm — it's the same underlying bet, made twice, seven years apart: that a population disagreeing with a model, in parallel and on purpose, finds more than a single adversary ever will. If compute and scale can let us train such systems, these evolutionary self-improving methods can take us far.</p>
+
+  </article>
+
+  <footer>
+    <div class="wrap" style="padding:0;">This draft is sourced from multiple patents: US US20250322254A1 (Patel et al.,; DeepMind, 2024), US12572803B2 (Jaderberg et al., DeepMind, 2019) and US20250315672A1 (Jaderberg et al., DeepMind, 2017). Figures are AI-generated illustrative examples formulated based on text in the patents.</div>
+  </footer>
+</div>
+
+</body>
+</html>
