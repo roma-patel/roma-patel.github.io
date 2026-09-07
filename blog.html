@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
  <head>
   <meta charset="utf-8"/>
@@ -273,6 +273,17 @@ a:hover {
     gap:22px
   }
 }
+   .blog-groups {
+  display:grid;
+  gap:46px;
+}
+
+.blog-group h2 {
+  font-family:"Libre Franklin",sans-serif;
+  font-size:22px;
+  margin:0 0 8px;
+  letter-spacing:-.02em;
+}
   </style>
  </head>
  <body>
@@ -286,7 +297,7 @@ a:hover {
       About
      </a>
      <a class="" href="research-code.html">
-      Research+Code
+      Research
      </a>
      <a class="active" href="blog.html">
       Blog
@@ -305,7 +316,7 @@ a:hover {
     Posts
    </h1>
    <p>
-    A collection of research notes, NLP resources, technical write-ups, reading lists, and assorted places and things.
+    Research notes, technical resources, reading, and assorted things I want to remember.
    </p>
   </header>
   <main>
@@ -314,167 +325,188 @@ a:hover {
      <div class="section-label">
       Archive
      </div>
-     <div class="blog-list">
-      <div class="blog-item">
-       <div class="blog-num">
-        01
+     <div class="blog-groups">
+      <section class="blog-group">
+       <h2>
+        Research notes
+       </h2>
+       <div class="blog-list">
+        <div class="blog-item">
+         <div class="blog-num">
+          01
+         </div>
+         <div>
+          <a href="latex-notes/representation_models.pdf">
+           On prototypes and exemplars
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          02
+         </div>
+         <div>
+          <a href="latex-notes/pacman_admissibility.pdf">
+           Admissibility heuristic and consistency of food
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          03
+         </div>
+         <div>
+          <a href="blog/tagging-scheme.html">
+           Which tagging scheme works best?
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          04
+         </div>
+         <div>
+          <a href="blog/relative-adj.html">
+           Quantifying relative intensity of adjectives
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          05
+         </div>
+         <div>
+          <a href="/blog/mark.html">
+           On semantic markarese
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          06
+         </div>
+         <div>
+          <a href="blog/pp.html">
+           Katz, Fodor and the projection problem
+          </a>
+         </div>
+        </div>
        </div>
-       <div>
-        <a href="blog/nlp-papers.html">
-         Annotated Catalogs of Relevant Papers
-        </a>
+      </section>
+      <section class="blog-group">
+       <h2>
+        Resources &amp; technical notes
+       </h2>
+       <div class="blog-list">
+        <div class="blog-item">
+         <div class="blog-num">
+          07
+         </div>
+         <div>
+          <a href="blog/nlp-papers.html">
+           Annotated Catalogs of Relevant Papers
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          08
+         </div>
+         <div>
+          <a href="blog/nlp-resources.html">
+           NLP resources
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          09
+         </div>
+         <div>
+          <a href="blog/scraping101.html">
+           Web Scraping 101
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          10
+         </div>
+         <div>
+          <a href="blog/notes.html">
+           Lecture Notes
+          </a>
+         </div>
+        </div>
        </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        02
+      </section>
+      <section class="blog-group">
+       <h2>
+        Books, places &amp; miscellany
+       </h2>
+       <div class="blog-list">
+        <div class="blog-item">
+         <div class="blog-num">
+          11
+         </div>
+         <div>
+          <a href="blog/book-list.html">
+           Classic Book List
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          12
+         </div>
+         <div>
+          <a href="blog/obscure-sorrows.html">
+           DOBS
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          13
+         </div>
+         <div>
+          <a href="blog/picture-blog.html">
+           Picture blog
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          14
+         </div>
+         <div>
+          <a href="blog/coffee-shops.html">
+           Coffee shops
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          15
+         </div>
+         <div>
+          <a href="blog/cocktail-bars.html">
+           Cocktail bars
+          </a>
+         </div>
+        </div>
+        <div class="blog-item">
+         <div class="blog-num">
+          16
+         </div>
+         <div>
+          <a href="blog/bookstores.html">
+           Bookstores
+          </a>
+         </div>
+        </div>
        </div>
-       <div>
-        <a href="blog/nlp-resources.html">
-         NLP resources
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        03
-       </div>
-       <div>
-        <a href="blog/scraping101.html">
-         Web Scraping 101
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        04
-       </div>
-       <div>
-        <a href="blog/book-list.html">
-         Classic Book List
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        05
-       </div>
-       <div>
-        <a href="blog/tagging-scheme.html">
-         Which tagging scheme works best?
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        06
-       </div>
-       <div>
-        <a href="blog/relative-adj.html">
-         Quantifying relative intensity of adjectives
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        07
-       </div>
-       <div>
-        <a href="/blog/mark.html">
-         On semantic markarese
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        08
-       </div>
-       <div>
-        <a href="blog/pp.html">
-         Katz, Fodor and the projection problem
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        09
-       </div>
-       <div>
-        <a href="blog/obscure-sorrows.html">
-         DOBS
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        10
-       </div>
-       <div>
-        <a href="blog/notes.html">
-         Lecture Notes
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        11
-       </div>
-       <div>
-        <a href="blog/picture-blog.html">
-         Picture blog
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        12
-       </div>
-       <div>
-        <a href="blog/coffee-shops.html">
-         Coffee shops
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        13
-       </div>
-       <div>
-        <a href="blog/cocktail-bars.html">
-         Cocktail bars
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        14
-       </div>
-       <div>
-        <a href="blog/bookstores.html">
-         Bookstores
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        15
-       </div>
-       <div>
-        <a href="latex-notes/representation_models.pdf">
-         On prototypes and exemplars
-        </a>
-       </div>
-      </div>
-      <div class="blog-item">
-       <div class="blog-num">
-        16
-       </div>
-       <div>
-        <a href="latex-notes/pacman_admissibility.pdf">
-         Admissibility heuristic and consistency of food
-        </a>
-       </div>
-      </div>
+      </section>
      </div>
     </div>
    </section>
