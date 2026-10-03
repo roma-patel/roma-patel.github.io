@@ -1,48 +1,413 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Roma Patel</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Franklin:wght@600;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#fbfaf7;--paper:#ffffff;--text:#22231f;--muted:#686a62;--accent:#7b3f2e;--line:#dedbd3;--soft:#f2eee7;--max:1080px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.72;font-size:16px}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.site-nav{position:sticky;top:0;z-index:10;background:rgba(251,250,247,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}.nav-inner{max-width:var(--max);margin:auto;display:flex;align-items:center;justify-content:space-between;padding:15px 24px}.brand{font-family:"Libre Franklin",sans-serif;font-weight:700;letter-spacing:-.02em;color:var(--text);font-size:19px}.links{display:flex;gap:28px}.links a{color:var(--text);font-size:14px;font-weight:500}.hero{max-width:var(--max);margin:auto;padding:72px 24px 56px;display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:64px;align-items:start}.eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:600;margin-bottom:12px}.hero h1{font-family:"Libre Franklin",sans-serif;font-size:48px;line-height:1.06;letter-spacing:-.035em;margin:0 0 22px}.hero p{margin:0 0 18px;color:var(--muted)}.hero strong{color:var(--text);font-weight:600}.profile-card{position:sticky;top:92px}.profile-card img{width:100%;display:block;border-radius:3px;filter:grayscale(100%)}.contact{border-top:1px solid var(--line);margin-top:18px;padding-top:16px;font-size:14px;line-height:1.8}.section{max-width:var(--max);margin:auto;padding:54px 24px;border-top:1px solid var(--line)}.section-grid{display:grid;grid-template-columns:190px minmax(0,1fr);gap:54px}.section h2{font-family:"Libre Franklin",sans-serif;font-size:18px;margin:2px 0;letter-spacing:-.02em}.content p{margin:0 0 20px}.timeline{display:grid;gap:0}.entry{display:grid;grid-template-columns:1fr 160px;gap:30px;padding:18px 0;border-bottom:1px solid var(--line)}.entry:first-child{padding-top:0}.entry:last-child{border-bottom:0}.entry-title{font-weight:600}.entry small{display:block;color:var(--muted);font-size:14px;line-height:1.55;margin-top:4px}.entry-date{text-align:right;color:var(--muted);font-size:14px}.news{display:grid;gap:0}.news-item{display:grid;grid-template-columns:130px 1fr;gap:28px;padding:14px 0;border-bottom:1px solid var(--line)}.news-item:last-child{border-bottom:0}.news-date{font-size:13px;color:var(--accent);font-weight:600}.quote{background:var(--soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:34px 24px;text-align:center;font-family:"Libre Franklin",sans-serif;font-size:20px}.footer{max-width:var(--max);margin:auto;padding:30px 24px 44px;color:var(--muted);font-size:13px}.mobile-menu{display:none}@media(max-width:760px){.links{gap:14px;flex-wrap:wrap;justify-content:flex-end}.hero{grid-template-columns:1fr;padding-top:44px}.profile-card{position:static;max-width:220px;order:-1}.hero h1{font-size:38px}.section-grid{grid-template-columns:1fr;gap:22px}.entry{grid-template-columns:1fr}.entry-date{text-align:left}.news-item{grid-template-columns:1fr;gap:4px}}
-</style>
-</head>
-<body>
-<nav class="site-nav"><div class="nav-inner"><a class="brand" href="index.html">Roma Patel</a><div class="links"><a href="index.html">About</a><a href="research-code.html">Research+Code</a><a href="blog.html">Blog</a><a href="papers.html">Papers</a></div></div></nav>
-<main>
-<section class="hero">
-  <div>
-    <div class="eyebrow">Senior Research Scientist · DeepMind</div>
-    <h1>Roma Patel</h1>
-    <p>I'm a Senior Research Scientist at DeepMind working on understanding <strong>safety, behavior and alignment of LLMs </strong>,
-    with a particular interest in how increasingly capable language-model systems can be trained, evaluated and stress-tested in a way that prevents their failures from being consequential.
-      I finished my PhD at Brown University advised 
-      by (the incredible) <a href="https://cs.brown.edu/people/epavlick/">Ellie Pavlick</a>, 
-      and defended my thesis (with my wonderful defense committee 
-      with <a href="https://cs.brown.edu/people/stellex/">Stefanie Tellex</a>, 
-      <a href="http://cs.brown.edu/people/gdk/">George Konidaris</a>, 
-      <a href="https://www.littmania.com/">Michael Littman</a> and 
-      <a href="https://fh295.github.io/">Felix Hill</a>),
-    focusing on language grounding, representation, and interpretability: foundations that continue to shape how I think about language understanding.
-    As an undergrad, I was advised by 
-      <a href="https://scholar.google.com/citations?user=vXQdb5kAAAAJ&hl=en">Ani Nenkova</a> and 
-      <a href="http://www.byronwallace.com/">Byron Wallace</a> in various areas of machine learning 
-      and language processing.</p>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Roma Patel
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Libre+Franklin:wght@600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   :root {
+  --bg:#fbfaf7;
+  --paper:#ffffff;
+  --text:#22231f;
+  --muted:#686a62;
+  --accent:#7b3f2e;
+  --line:#dedbd3;
+  --soft:#f2eee7;
+  --max:1080px
+}
 
+* {
+  box-sizing:border-box
+}
+
+html {
+  scroll-behavior:smooth
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,Arial,sans-serif;
+  line-height:1.72;
+  font-size:16px
+}
+
+a {
+  color:var(--accent);
+  text-decoration:none
+}
+
+a:hover {
+  text-decoration:underline
+}
+
+.site-nav {
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(251,250,247,.96);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(10px)
+}
+
+.nav-inner {
+  max-width:var(--max);
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:15px 24px
+}
+
+.brand {
+  font-family:"Libre Franklin",sans-serif;
+  font-weight:700;
+  letter-spacing:-.02em;
+  color:var(--text);
+  font-size:19px
+}
+
+.links {
+  display:flex;
+  gap:28px
+}
+
+.links a {
+  color:var(--text);
+  font-size:14px;
+  font-weight:500
+}
+
+.hero {
+  max-width:var(--max);
+  margin:auto;
+  padding:72px 24px 56px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 250px;
+  gap:64px;
+  align-items:start
+}
+
+.eyebrow {
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  color:var(--accent);
+  font-weight:600;
+  margin-bottom:12px
+}
+
+.hero h1 {
+  font-family:"Libre Franklin",sans-serif;
+  font-size:48px;
+  line-height:1.06;
+  letter-spacing:-.035em;
+  margin:0 0 22px
+}
+
+.hero p {
+  margin:0 0 18px;
+  color:var(--muted)
+}
+
+.hero strong {
+  color:var(--text);
+  font-weight:600
+}
+
+.profile-card {
+  position:sticky;
+  top:92px
+}
+
+.profile-card img {
+  width:100%;
+  display:block;
+  border-radius:3px;
+  filter:grayscale(100%)
+}
+
+.contact {
+  border-top:1px solid var(--line);
+  margin-top:18px;
+  padding-top:16px;
+  font-size:14px;
+  line-height:1.8
+}
+
+.section {
+  max-width:var(--max);
+  margin:auto;
+  padding:54px 24px;
+  border-top:1px solid var(--line)
+}
+
+.section-grid {
+  display:grid;
+  grid-template-columns:190px minmax(0,1fr);
+  gap:54px
+}
+
+.section h2 {
+  font-family:"Libre Franklin",sans-serif;
+  font-size:18px;
+  margin:2px 0;
+  letter-spacing:-.02em
+}
+
+.content p {
+  margin:0 0 20px
+}
+
+.timeline {
+  display:grid;
+  gap:0
+}
+
+.entry {
+  display:grid;
+  grid-template-columns:1fr 160px;
+  gap:30px;
+  padding:18px 0;
+  border-bottom:1px solid var(--line)
+}
+
+.entry:first-child {
+  padding-top:0
+}
+
+.entry:last-child {
+  border-bottom:0
+}
+
+.entry-title {
+  font-weight:600
+}
+
+.entry small {
+  display:block;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.55;
+  margin-top:4px
+}
+
+.entry-date {
+  text-align:right;
+  color:var(--muted);
+  font-size:14px
+}
+
+.news {
+  display:grid;
+  gap:0
+}
+
+.news-item {
+  display:grid;
+  grid-template-columns:130px 1fr;
+  gap:28px;
+  padding:14px 0;
+  border-bottom:1px solid var(--line)
+}
+
+.news-item:last-child {
+  border-bottom:0
+}
+
+.news-date {
+  font-size:13px;
+  color:var(--accent);
+  font-weight:600
+}
+
+.quote {
+  background:var(--soft);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:34px 24px;
+  text-align:center;
+  font-family:"Libre Franklin",sans-serif;
+  font-size:20px
+}
+
+.footer {
+  max-width:var(--max);
+  margin:auto;
+  padding:30px 24px 44px;
+  color:var(--muted);
+  font-size:13px
+}
+
+.mobile-menu {
+  display:none
+}
+
+@media(max-width:760px) {
+  .links {
+    gap:14px;
+    flex-wrap:wrap;
+    justify-content:flex-end
+  }
+  .hero {
+    grid-template-columns:1fr;
+    padding-top:44px
+  }
+  .profile-card {
+    position:static;
+    max-width:220px;
+    order:-1
+  }
+  .hero h1 {
+    font-size:38px
+  }
+  .section-grid {
+    grid-template-columns:1fr;
+    gap:22px
+  }
+  .entry {
+    grid-template-columns:1fr
+  }
+  .entry-date {
+    text-align:left
+  }
+  .news-item {
+    grid-template-columns:1fr;
+    gap:4px
+  }
+}
+   .agenda-list {
+  display:grid;
+  gap:0;
+  border-top:1px solid var(--line);
+}
+
+.agenda-item {
+  padding:20px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.agenda-item h3 {
+  font-family:"Libre Franklin",sans-serif;
+  font-size:18px;
+  line-height:1.35;
+  margin:0 0 6px;
+  letter-spacing:-.02em;
+}
+
+.agenda-item p {
+  margin:0;
+  color:var(--muted);
+}
+
+.representative-work {
+  margin-top:14px;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+}
+
+.work-label {
+  display:block;
+  margin-bottom:5px;
+  font-family:"Libre Franklin",sans-serif;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.representative-work a {
+  font-size:14px;
+  font-weight:500;
+  line-height:1.45;
+  color:var(--accent);
+  text-decoration:none;
+}
+
+.representative-work a:hover {
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+.representative-work .arrow {
+  display:inline-block;
+  margin-left:3px;
+  font-size:.8em;
+}
+  </style>
+ </head>
+ <body>
+  <nav class="site-nav">
+   <div class="nav-inner">
+    <a class="brand" href="index.html">
+     Roma Patel
+    </a>
+    <div class="links">
+     <a href="index.html">
+      About
+     </a>
+     <a href="research-code.html">
+      Research
+     </a>
+     <a href="blog.html">
+      Blog
+     </a>
+     <a href="papers.html">
+      Papers
+     </a>
+    </div>
+   </div>
+  </nav>
+  <main>
+   <section class="hero">
+    <div>
+     <div class="eyebrow">
+      Senior Research Scientist · Google DeepMind
+     </div>
+     <h1>
+      Roma Patel
+     </h1>
+     <p>
+      I am a Senior Research Scientist at Google DeepMind working on
+      <strong>
+       AI safety and alignment
+      </strong>
+      , with a particular interest in how increasingly capable language-model systems can be evaluated, aligned, and stress-tested before their failures become consequential.
+     </p>
+     <p>
       <strong>
        My research asks how we can understand failures in language models, improve alignment objectives and training methods, and build systems that proactively surface emerging risks.
       </strong>
-    <p></p>
-    <p>Apart from work, I enjoy reading vast amounts of literature, going to new mountains, and to coffeeshops. Feel free to reach out with research related questions or otherwise!</p>
-  </div>
-  <aside class="profile-card"><img src="https://raw.githubusercontent.com/roma-patel/roma-patel.github.io/main/figures/bw-profile.jpg" alt="Roma Patel"><div class="contact">Email: romapatel@deepmind.com<br>Github: <a href="https://github.com/roma-patel">roma-patel</a><br>Google Scholar: <a href="https://scholar.google.com/citations?hl=en&user=16OCMAQAAAAJ">here</a></div></aside>
-</section>
-  
+      My earlier work, including my PhD at Brown University with Ellie Pavlick, studied language grounding, representation, and interpretability: foundations that continue to shape how I think about what models understand and how their behavior can be made legible.
+     </p>
+     <p>
+      I am broadly interested in the intersection of language, reinforcement learning, multi-agent systems, and long-term AI safety. Outside of work, I enjoy reading vast amounts of literature, going to new mountains, and finding good coffeeshops.
+     </p>
+    </div>
+    <aside class="profile-card">
+     <img alt="Roma Patel" src="https://raw.githubusercontent.com/roma-patel/roma-patel.github.io/main/figures/bw-profile.jpg"/>
+     <div class="contact">
+      Email: romapatel@deepmind.com
+      <br/>
+      Github:
+      <a href="https://github.com/roma-patel">
+       roma-patel
+      </a>
+      <br/>
+      Google Scholar:
+      <a href="https://scholar.google.com/citations?hl=en&amp;user=16OCMAQAAAAJ">
+       here
+      </a>
+     </div>
+    </aside>
+   </section>
    <section class="section">
     <div class="section-grid">
      <h2>
@@ -55,52 +420,279 @@
       <div class="agenda-list">
        <div class="agenda-item">
         <h3>
-         Understanding model failures
+         Understanding and interpreting models
         </h3>
         <p>
-         How do we build evaluations to uncover when and why models exhibit harmful, biased, sycophantic, or otherwise undesirable behavior in real human–AI interactions?
+         How can we better evaluate and understand the representations and behaviors that emerge in language models?
         </p>
+        <div class="representative-work">
+         <span class="work-label">
+          Representative work
+         </span>
+         <a href="https://iclr.cc/virtual/2022/poster/5992" target="_blank" rel="noopener noreferrer">
+          Mapping Language Models to Grounded Conceptual Spaces
+          <span class="arrow">↗</span>
+         </a>
+        </div>
        </div>
        <div class="agenda-item">
         <h3>
-         Improving alignment mechanisms
+         Improving alignment
         </h3>
         <p>
-         How can feedback, reward design, and learning objectives better represent diverse or conflicting human values and produce robust behavior?
+         How can we design learning objectives and feedback mechanisms that produce robust behavior when human values are diverse, conflicting, or underspecified?
         </p>
+        <div class="representative-work">
+         <span class="work-label">
+          Representative work
+         </span>
+         <a href="https://arxiv.org/pdf/2606.26155" target="_blank" rel="noopener noreferrer">
+          Detecting and Controlling Sycophancy with Cascading Linear Features
+          <span class="arrow">↗</span>
+         </a>
+        </div>
        </div>
        <div class="agenda-item">
         <h3>
          Anticipating emerging risks
         </h3>
         <p>
-         How can adversarial, multi-agent, and automated evaluation systems discover failure modes that static evaluations or human red teams may not anticipate?
+         How can models and multi-agent systems help us discover failure modes that static evaluations and human red teams have not yet anticipated?
         </p>
+        <div class="representative-work">
+         <span class="work-label">
+          Representative work
+         </span>
+         <a href="https://roma-patel.github.io/blog/red-team-leagues.html" target="_blank" rel="noopener noreferrer">
+          League of LLMs: Creating Adversaries to Harden a Model
+          <span class="arrow">↗</span>
+         </a>
+        </div>
        </div>
       </div>
      </div>
     </div>
    </section>
-  
-  <section class="section"><div class="section-grid"><h2>Where I've Been</h2><div class="timeline">
-<div class="entry"><div><div class="entry-title">Google DeepMind, San Francisco</div><small>Safety, alignment, and reinforcement learning methods for LLMs.</small></div><div class="entry-date">2026-current.</div></div>
-<div class="entry"><div><div class="entry-title">DeepMind, London</div><small>Language grounding, reinforcement learning, multi-agent and game-theoretics methods for LLMs.</small></div><div class="entry-date">2022-2025.</div></div>
-<div class="entry"><div><div class="entry-title">Microsoft Research: Microsoft Turing Academic Program</div><small>Worked with Dean Carignan, Saurabh Tiwary, Pooya Moradi, Ali Alvi and others at MSR.</small></div><div class="entry-date">Summer 2021.</div></div>
-<div class="entry"><div><div class="entry-title">DeepMind, London: Research Intern (Multi-agent Reinforcement Learning)</div><small>Worked with Angeliki Lazaridou, Edward Hughes, Ian Gemp and Yoram Bachrach.</small></div><div class="entry-date">Summer 2020.</div></div>
-<div class="entry"><div><div class="entry-title">Google AI, Mountain View: Research Intern (Vision and Language Reinforcement Learning)</div><small>Worked with Alex Ku and Jason Baldridge.</small></div><div class="entry-date">Summer 2019.</div></div>
-<div class="entry"><div><div class="entry-title">Johns Hopkins University: Jelinek Summer Workshop on Speech and Language Technology (JSALT)</div><small>Worked with Ellie Pavlick, Sam Bowman and Tal Linzen.</small></div><div class="entry-date">Summer 2018.</div></div>
-<div class="entry"><div><div class="entry-title">Max Planck Institute: Cornell, Maryland, Max Planck Pre-doctoral Research School (CMMRS)</div><small></small></div><div class="entry-date">Summer 2018.</div></div>
-<div class="entry"><div><div class="entry-title">University of Pennsylvania: Undergraduate Researcher</div><small>Worked with Ani Nenkova and Byron Wallace.</small></div><div class="entry-date">Summer 2017-18.</div></div>
-<div class="entry"><div><div class="entry-title">Princeton University: Program in Algorithmic and Combinatorial Thinking (PACT)</div><small>Led by Rajiv Gandhi.</small></div><div class="entry-date">Summer 2016.</div></div>
-<div class="entry"><div><div class="entry-title">Rutgers University: Undergraduate Researcher</div><small>Worked with Rajiv Gandhi.</small></div><div class="entry-date">2016-2018.</div></div>
-</div></div></section>
-<section class="section"><div class="section-grid"><h2>What I'm Recently Upto</h2><div class="news">
-<div class="news-item"><div class="news-date">September 2024</div><div>I'm giving a talk on safety and ethical implications of LLMs at the <a href="https://www.m2lschool.org/">M2L Summer School</a>.</div></div>
-<div class="news-item"><div class="news-date">July 2024</div><div>I'm giving a talk at a <a href="https://jacquespesnot.github.io/2024_CogSci_Workshop/">CogSci workshop</a> on understanding the conceptual structure of language models.</div></div>
-<div class="news-item"><div class="news-date">June 2024</div><div>I'm at the <a href="https://ampln.github.io/escuelaverano2024/">Mexican NLP Summer School</a> co-located with NAACL and on a panel talking about PhDs in NLP.</div></div>
-<div class="news-item"><div class="news-date">November 2023</div><div>I'm giving a guest lecture at <a href="https://csci-1460-computational-linguistics.github.io/">Brown CS 1460</a> on grounded language learning.</div></div>
-<div class="news-item"><div class="news-date">October 2023</div><div>I'm at the <a href="http://dimacs.rutgers.edu/events/details?eID=2652">DIMACS workshop</a> talking about language models and multi-agent reinforcement learning can benefit from each other.</div></div>
-</div></div></section>
-<div class="quote">In today's garden path sentences: The prime number few.</div>
-</main><footer class="footer">© Roma Patel</footer>
-</body></html>
+   <section class="section">
+    <div class="section-grid">
+     <h2>
+      Where I've Been
+     </h2>
+     <div class="timeline">
+      <div class="entry">
+       <div>
+        <div class="entry-title">
+         Google DeepMind, San Francisco
+        </div>
+        <small>
+         Safety, alignment, and reinforcement learning methods for LLMs.
+        </small>
+       </div>
+       <div class="entry-date">
+        2026–current
+       </div>
+      </div>
+
+      <div class="entry">
+       <div>
+        <div class="entry-title">
+         DeepMind, London
+        </div>
+        <small>
+         Language grounding, reinforcement learning, multi-agent and game-theoretic methods for LLMs.
+        </small>
+       </div>
+       <div class="entry-date">
+        2022–2025
+       </div>
+      </div>
+
+      <div class="entry">
+       <div>
+        <div class="entry-title">
+         Microsoft Research: Microsoft Turing Academic Program
+        </div>
+        <small>
+         Worked with Dean Carignan, Saurabh Tiwary, Pooya Moradi, Ali Alvi and others at MSR.
+        </small>
+       </div>
+       <div class="entry-date">
+        Summer 2021
+       </div>
+      </div>
+
+      <div class="entry">
+       <div>
+        <div class="entry-title">
+         DeepMind, London: Research Intern (Multi-agent Reinforcement Learning)
+        </div>
+        <small>
+         Worked with Angeliki Lazaridou, Edward Hughes, Ian Gemp and Yoram Bachrach.
+        </small>
+       </div>
+       <div class="entry-date">
+        Summer 2020
+       </div>
+      </div>
+
+      <div class="entry">
+       <div>
+        <div class="entry-title">
+         Google AI, Mountain View: Research Intern (Vision and Language Reinforcement Learning)
+        </div>
+        <small>
+         Worked with Alex Ku and Jason Baldridge.
+        </small>
+       </div>
+       <div class="entry-date">
+        Summer 2019
+       </div>
+      </div>
+
+      <div class="entry">
+       <div>
+        <div class="entry-title">
+         Johns Hopkins University: Jelinek Summer Workshop on Speech and Language Technology (JSALT)
+        </div>
+        <small>
+         Worked with Ellie Pavlick, Sam Bowman and Tal Linzen.
+        </small>
+       </div>
+       <div class="entry-date">
+        Summer 2018
+       </div>
+      </div>
+
+      <div class="entry">
+       <div>
+        <div class="entry-title">
+         Max Planck Institute: Cornell, Maryland, Max Planck Pre-doctoral Research School (CMMRS)
+        </div>
+       </div>
+       <div class="entry-date">
+        Summer 2018
+       </div>
+      </div>
+
+      <div class="entry">
+       <div>
+        <div class="entry-title">
+         University of Pennsylvania: Undergraduate Researcher
+        </div>
+        <small>
+         Worked with Ani Nenkova and Byron Wallace.
+        </small>
+       </div>
+       <div class="entry-date">
+        Summer 2017–18
+       </div>
+      </div>
+
+      <div class="entry">
+       <div>
+        <div class="entry-title">
+         Princeton University: Program in Algorithmic and Combinatorial Thinking (PACT)
+        </div>
+        <small>
+         Led by Rajiv Gandhi.
+        </small>
+       </div>
+       <div class="entry-date">
+        Summer 2016
+       </div>
+      </div>
+
+      <div class="entry">
+       <div>
+        <div class="entry-title">
+         Rutgers University: Undergraduate Researcher
+        </div>
+        <small>
+         Worked with Rajiv Gandhi.
+        </small>
+       </div>
+       <div class="entry-date">
+        2016–2018
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="section">
+    <div class="section-grid">
+     <h2>
+      Recent
+     </h2>
+     <div class="news">
+      <div class="news-item">
+       <div class="news-date">
+        September 2024
+       </div>
+       <div>
+        I'm giving a talk on safety and ethical implications of LLMs at the
+        <a href="https://www.m2lschool.org/">
+         M2L Summer School
+        </a>
+        .
+       </div>
+      </div>
+      <div class="news-item">
+       <div class="news-date">
+        July 2024
+       </div>
+       <div>
+        I'm giving a talk at a
+        <a href="https://jacquespesnot.github.io/2024_CogSci_Workshop/">
+         CogSci workshop
+        </a>
+        on understanding the conceptual structure of language models.
+       </div>
+      </div>
+      <div class="news-item">
+       <div class="news-date">
+        June 2024
+       </div>
+       <div>
+        I'm at the
+        <a href="https://ampln.github.io/escuelaverano2024/">
+         Mexican NLP Summer School
+        </a>
+        co-located with NAACL and on a panel talking about PhDs in NLP.
+       </div>
+      </div>
+      <div class="news-item">
+       <div class="news-date">
+        November 2023
+       </div>
+       <div>
+        I'm giving a guest lecture at
+        <a href="https://csci-1460-computational-linguistics.github.io/">
+         Brown CS 1460
+        </a>
+        on grounded language learning.
+       </div>
+      </div>
+      <div class="news-item">
+       <div class="news-date">
+        October 2023
+       </div>
+       <div>
+        I'm at the
+        <a href="http://dimacs.rutgers.edu/events/details?eID=2652">
+         DIMACS workshop
+        </a>
+        talking about language models and multi-agent reinforcement learning can benefit from each other.
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <div class="quote">
+    In today's garden path sentences: The prime number few.
+   </div>
+  </main>
+  <footer class="footer">
+   © Roma Patel
+  </footer>
+ </body>
+</html>
